@@ -5,7 +5,7 @@ project:
 website:
   title: "From SAS to R, and into HEOR/RWE"
   description: "A working biostatistician's applied learning journal."
-  site-url: https://github.com/Priya1632/Learning-Journey.git
+  site-url: https://Priya1632.github.io/Learning-Journey/
   repo-url: https://github.com/Priya1632/Learning-Journey.git
   repo-actions: [edit, source]
   page-navigation: true

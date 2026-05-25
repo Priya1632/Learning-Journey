@@ -2,7 +2,7 @@
 
 A working biostatistician's applied learning journal. Built with [Quarto](https://quarto.org).
 
-**Live site:** https://github.com/Priya1632/Learning-Journey
+**Live site:** https://Priya1632.github.io/Learning-Journey/
 
 ## What this is
 

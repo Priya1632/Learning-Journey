@@ -1,0 +1,22 @@
+/* Tighten the homepage two-column grid */
+.grid > .g-col-6 {
+  padding: 1.25rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: #fafbfc;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.grid > .g-col-6:hover {
+  border-color: #2c5282;
+  transform: translateY(-1px);
+}
+
+.grid > .g-col-6 h3 {
+  margin-top: 0;
+}
+
+/* Slightly less aggressive code block padding */
+pre.sourceCode {
+  padding: 0.75rem 1rem;
+}

@@ -1,0 +1,43 @@
+---
+title: "From SAS to R, and into HEOR/RWE"
+subtitle: "A working biostatistician's applied learning journal"
+toc: false
+---
+
+::: {.callout-note}
+This is a **living learning journal**, not a textbook. Entries reflect what I'm working through right now — concepts I'm wrestling with, code I'm writing, resources I'm reading, and the takeaways I want my future self to remember. Some entries are polished, some are rough. That's the point.
+:::
+
+## Why this exists
+
+I'm a clinical biostatistician (PharmD, MPH) currently programming primarily in SAS, transitioning toward R fluency and HEOR/RWE methodology. This site is where I document that transition — partly as a personal reference, partly so anyone walking a similar path has something to follow along with.
+
+The format is **applied and project-based**. Every entry tries to answer: what is this concept, why does it matter, what does the code look like, what resources helped me, and what do I want to remember next time?
+
+## The two tracks
+
+::: {.grid}
+
+::: {.g-col-6}
+### [SAS → R](sas-to-r/index.qmd)
+
+Becoming proficient in R as a working biostatistician. R fundamentals, the tidyverse, pharmaverse (admiral, xportr, tfrmt, metacore), and side-by-side translations of SAS patterns I use every day.
+:::
+
+::: {.g-col-6}
+### [HEOR & RWE](heor-rwe/index.qmd)
+
+Building expertise in health economics and outcomes research and real-world evidence. Statistical models (ZINB, GLMs, survival), causal inference, study design, and the tools and data sources used in the field.
+:::
+
+:::
+
+## Quick links
+
+- [R coding reference](reference/r-cheatsheet.qmd) — the running cheat sheet I wish I'd had on day one
+- [Resources reviewed](heor-rwe/resources-reviewed/index.qmd) — every book, course, and paper, with my one-line take
+- [About](about.qmd)
+
+## How to use this site
+
+If you're following along: pick a track and start at its index page. Entries are dated and roughly chronological within each section. If you spot something wrong, the **Edit this page** link in the right sidebar takes you straight to the source on GitHub.

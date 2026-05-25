@@ -1,0 +1,7 @@
+---
+title: "SAS vs R Patterns"
+---
+
+Side-by-side translations of patterns I use every day in SAS, written in R. The point isn't to argue one is better — it's to make the mental jump faster when I'm in R and reaching for a SAS habit.
+
+*Planned entries: `proc sort` + `first.`/`last.` → `dplyr::group_by` + `slice`, `proc transpose` → `pivot_wider`/`pivot_longer`, `retain` statements → `cumsum`/`accumulate`, merge logic, macro variables → functions and `glue`.*

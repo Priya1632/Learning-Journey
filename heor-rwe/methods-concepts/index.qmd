@@ -1,0 +1,11 @@
+---
+title: "Methods & Concepts"
+---
+
+The conceptual layer above the models — how to ask the right causal question, how to design a study, how to think about confounding and identification before reaching for an estimator.
+
+## Entries
+
+- [*What If*, Ch. 1 — A definition of causal effect](what-if-ch1-causal-questions.qmd)
+
+*Planned: target trial emulation, propensity scores (matching vs. weighting vs. stratification), IV methods, regression discontinuity, sensitivity analysis (E-values), study designs in RWE.*

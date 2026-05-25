@@ -1,0 +1,7 @@
+---
+title: "Tools & Software"
+---
+
+The R ecosystem for HEOR/RWE work. Setup notes, what each package is for, and the gotchas I hit.
+
+*Planned coverage: `pscl` (zero-inflated/hurdle models), `countreg` (count model diagnostics), `survey` (complex survey designs — essential for MEPS), `marginaleffects` (post-estimation, the way), `MatchIt` and `WeightIt` (PS methods), `survival` and `survminer`, `cmprsk` (competing risks), data sources (MEPS, CPRD, SEER-Medicare).*

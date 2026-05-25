@@ -1,0 +1,26 @@
+---
+title: "HEOR & RWE"
+subtitle: "Building expertise in health economics, outcomes research, and real-world evidence"
+---
+
+## What this track covers
+
+The methodological core of HEOR/RWE work — the statistical models, the causal inference frameworks, the data sources, and the software the field actually uses. My anchor project is a ZINB model comparison on MEPS utilization data, targeting ISPOR 2027.
+
+## Sections
+
+### [Statistical Models](stat-models/index.qmd)
+The model families that show up constantly in HEOR/RWE: count models (Poisson, NB, ZIP, ZINB, hurdle), GLMs for cost data, survival, mixed models. Each entry walks through the model, when to use it, the R implementation, and the diagnostics.
+
+### [Methods & Concepts](methods-concepts/index.qmd)
+Causal inference, target trial emulation, propensity scores, instrumental variables, study design. The "what's the right question" layer that sits above any specific model.
+
+### [Tools & Software](tools/index.qmd)
+The R ecosystem for HEOR/RWE: `pscl`, `survey`, `countreg`, `marginaleffects`, `MatchIt`, `WeightIt`, `survival`, `tidymodels`. Setup notes, gotchas, and when to reach for which.
+
+### [Resources Reviewed](resources-reviewed/index.qmd)
+Every book, course, paper, and webinar I've worked through, with my one-line take and a link to a deeper summary if I wrote one.
+
+## Current focus
+
+Working through Hernán & Robins, *Causal Inference: What If*, Part I. First detailed entry: [Chapter 1 — A definition of causal effect](methods-concepts/what-if-ch1-causal-questions.qmd).

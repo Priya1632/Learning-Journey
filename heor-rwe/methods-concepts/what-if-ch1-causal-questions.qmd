@@ -1,0 +1,62 @@
+---
+title: "*What If*, Ch. 1 — A definition of causal effect"
+subtitle: "Hernán & Robins, *Causal Inference: What If* — counterfactuals, individual vs. average effects, association ≠ causation"
+date: 2026-04-30
+categories: [causal-inference, what-if, methods]
+---
+
+::: {.callout-note}
+**Source:** Hernán MA, Robins JM. *Causal Inference: What If*. Boca Raton: Chapman & Hall/CRC, 2020. [Free PDF](https://miguelhernan.org/whatifbook).
+
+The summary below is in **my own words** — what I took away, why it matters to me as a biostatistician moving toward HEOR/RWE. For the actual material, read the book.
+:::
+
+## Concept
+
+A causal effect, defined cleanly, is a contrast between **two potential outcomes for the same unit under different treatments**. For an individual, the causal effect of treatment $A$ on outcome $Y$ is $Y^{a=1} - Y^{a=0}$ — the difference between what would happen *if treated* and what would happen *if untreated*. The fundamental problem of causal inference is that we only ever observe one of these two potential outcomes for each individual. The other is counterfactual.
+
+Because individual causal effects are unidentifiable, causal inference operates at the **average** level: $E[Y^{a=1}] - E[Y^{a=0}]$. We swap the impossible (knowing what *would have happened* to person $i$) for the merely difficult (estimating averages over groups under untestable assumptions).
+
+## Why it matters
+
+This chapter is the conceptual fork in the road. Once you accept that:
+
+1. Causation is defined in terms of counterfactuals, not just associations,
+2. We can never observe both potential outcomes for the same person,
+3. So everything we do in causal inference is built on assumptions that license us to use observed data to estimate averages of unobserved counterfactuals —
+
+…then everything else in the book (and in HEOR/RWE practice) makes sense as machinery for making that swap defensible. Propensity scores, IPTW, target trial emulation, IV — they're all answers to the question: *given that I can't observe counterfactuals, under what assumptions can I still get $E[Y^{a=1}] - E[Y^{a=0}]$ from data I do have?*
+
+For my work specifically: this is the lens I need to bring to RWE. A regression with covariates is not a causal analysis just because it controls for things. It becomes one when I can write down the counterfactual contrast it estimates and the assumptions under which my estimator equals that contrast.
+
+## My summary — key concepts that helped me understand
+
+- **Potential outcomes notation $Y^a$.** $Y^{a=1}$ is the outcome a person *would have* under treatment; $Y^{a=0}$ is the outcome the same person *would have* under no treatment. These are properties of the person, not of the data. Most of them are unobserved by definition.
+
+- **Individual causal effect = $Y^{a=1} - Y^{a=0}$.** Defined for a person. Almost never identifiable. The point of writing it down isn't to estimate it — it's to be precise about what you'd want to estimate in a perfect world.
+
+- **Average causal effect = $E[Y^{a=1}] - E[Y^{a=0}]$.** This is the population-level quantity we *can* estimate, given assumptions. It's not just "the average of individual effects" in any practically useful sense — it's the contrast of two whole-population means under counterfactual treatment regimes.
+
+- **Causation ≠ Association.** $E[Y \mid A=1] - E[Y \mid A=0]$ (an associational contrast) is *not* the same as $E[Y^{a=1}] - E[Y^{a=0}]$ (a causal contrast). They're equal only under conditions like exchangeability, which randomization buys you and observational data does not.
+
+- **Three measures of effect** show up: risk difference, risk ratio, odds ratio. Different scales, different uses. For HEOR work where I'll be reporting to decision-makers, the **risk difference / absolute scale** is usually the most communicative; multiplicative measures collapse base-rate information.
+
+- **Sharp vs. average null hypotheses.** "Treatment had no effect on anyone" (sharp null) is much stronger than "average effect is zero." A non-zero average can hide huge heterogeneity, and a zero average can hide opposite-direction effects in subgroups. This matters for HTE work.
+
+## Things to remember
+
+- Whenever I hear "the effect of $A$ on $Y$," I should mentally translate to: "the contrast $E[Y^{a=1}] - E[Y^{a=0}]$, under what assumptions, in what population." If I can't fill those blanks in, the claim isn't well-defined yet.
+- A causal claim from observational data is a claim about counterfactuals **plus** a defense of the assumptions that license bridging from observed to counterfactual. The defense is the analysis. The model is just the bookkeeping.
+- "Confounding" in this framework is precisely the failure of exchangeability: $Y^a \not\!\perp\!\!\!\perp A$. That's a much sharper definition than the usual "a third variable that distorts the relationship."
+
+## Code
+
+No code in this chapter — it's foundational. Code starts showing up around Chapter 11 (IP weighting) and 12 (g-formula). I'll write up those entries as I get there, with R implementations using `survey`, `WeightIt`, and `marginaleffects`.
+
+## Status
+
+Read. Re-read introduction and 1.4 (effect measures). Moving to Chapter 2 (randomized experiments) next.
+
+## Cross-references
+
+- *Resources Reviewed:* [entry for *What If*](../resources-reviewed/index.qmd#books)

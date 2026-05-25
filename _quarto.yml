@@ -1,0 +1,103 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "From SAS to R, and into HEOR/RWE"
+  description: "A working biostatistician's applied learning journal."
+  site-url: https://github.com/Priya1632/Learning-Journey.git
+  repo-url: https://github.com/Priya1632/Learning-Journey.git
+  repo-actions: [edit, source]
+  page-navigation: true
+  back-to-top-navigation: true
+
+  navbar:
+    background: primary
+    search: true
+    left:
+      - href: index.qmd
+        text: Home
+      - text: "SAS → R"
+        menu:
+          - sas-to-r/index.qmd
+          - sas-to-r/r-fundamentals/index.qmd
+          - sas-to-r/dplyr-tidyverse/index.qmd
+          - sas-to-r/pharmaverse/index.qmd
+          - sas-to-r/sas-vs-r-patterns/index.qmd
+      - text: "HEOR & RWE"
+        menu:
+          - heor-rwe/index.qmd
+          - heor-rwe/stat-models/index.qmd
+          - heor-rwe/methods-concepts/index.qmd
+          - heor-rwe/tools/index.qmd
+          - heor-rwe/resources-reviewed/index.qmd
+      - href: reference/r-cheatsheet.qmd
+        text: R Reference
+      - href: about.qmd
+        text: About
+
+  sidebar:
+    - title: "SAS → R"
+      style: docked
+      contents:
+        - sas-to-r/index.qmd
+        - section: "R Fundamentals"
+          contents:
+            - sas-to-r/r-fundamentals/index.qmd
+        - section: "dplyr & tidyverse"
+          contents:
+            - sas-to-r/dplyr-tidyverse/index.qmd
+            - sas-to-r/dplyr-tidyverse/week2-core-verbs.qmd
+        - section: "pharmaverse"
+          contents:
+            - sas-to-r/pharmaverse/index.qmd
+        - section: "SAS vs R patterns"
+          contents:
+            - sas-to-r/sas-vs-r-patterns/index.qmd
+
+    - title: "HEOR & RWE"
+      contents:
+        - heor-rwe/index.qmd
+        - section: "Statistical Models"
+          contents:
+            - heor-rwe/stat-models/index.qmd
+        - section: "Methods & Concepts"
+          contents:
+            - heor-rwe/methods-concepts/index.qmd
+            - heor-rwe/methods-concepts/what-if-ch1-causal-questions.qmd
+        - section: "Tools & Software"
+          contents:
+            - heor-rwe/tools/index.qmd
+        - section: "Resources Reviewed"
+          contents:
+            - heor-rwe/resources-reviewed/index.qmd
+
+  page-footer:
+    left: "© 2026 · A learning journal in progress."
+    right:
+      - icon: github
+        href: https://github.com/Priya1632/Learning-Journey.git
+      - icon: linkedin
+        href: https://www.linkedin.com/in/priya-bodduluri/
+
+format:
+  html:
+    theme:
+      light: [cosmo, assets/custom.scss]
+      dark: [darkly, assets/custom.scss]
+    css: assets/styles.css
+    toc: true
+    toc-depth: 3
+    toc-location: right
+    code-fold: false
+    code-copy: true
+    code-link: true
+    code-overflow: wrap
+    highlight-style: github
+    fig-align: center
+    smooth-scroll: true
+
+execute:
+  freeze: auto
+  warning: false
+  message: false

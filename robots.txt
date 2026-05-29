@@ -1,1 +1,1 @@
-Sitemap: https://github.com/Priya1632/Learning-Journey.git/sitemap.xml
+Sitemap: https://Priya1632.github.io/Learning-Journey/sitemap.xml

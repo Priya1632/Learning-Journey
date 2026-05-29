@@ -3,10 +3,12 @@ title: "Resources Reviewed"
 listing:
   contents: "*.qmd"
   sort: "date desc"
-  type: grid
+  type: default
   categories: true
-  fields: [title, subtitle, date, categories]
+  fields: [title, subtitle, date, categories, description]
+  exclude:
+    title: "Resources Reviewed"
 ---
 
-Every book, course, paper, webinar, and conference I've worked through. 
+Every book, course, paper, webinar, and conference I've worked through.
 Organized by date — newest first.

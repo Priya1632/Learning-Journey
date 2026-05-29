@@ -6,7 +6,7 @@ website:
   title: "From SAS to R, and into HEOR/RWE"
   description: "A working biostatistician's applied learning journal."
   site-url: https://Priya1632.github.io/Learning-Journey/
-  repo-url: https://github.com/Priya1632/Learning-Journey.git
+  repo-url: https://github.com/Priya1632/Learning-Journey
   repo-actions: [edit, source]
   page-navigation: true
   back-to-top-navigation: true
@@ -42,41 +42,31 @@ website:
       contents:
         - sas-to-r/index.qmd
         - section: "R Fundamentals"
-          contents:
-            - sas-to-r/r-fundamentals/index.qmd
+          contents: sas-to-r/r-fundamentals/
         - section: "dplyr & tidyverse"
-          contents:
-            - sas-to-r/dplyr-tidyverse/index.qmd
-            - sas-to-r/dplyr-tidyverse/week2-core-verbs.qmd
+          contents: sas-to-r/dplyr-tidyverse/
         - section: "pharmaverse"
-          contents:
-            - sas-to-r/pharmaverse/index.qmd
+          contents: sas-to-r/pharmaverse/
         - section: "SAS vs R patterns"
-          contents:
-            - sas-to-r/sas-vs-r-patterns/index.qmd
+          contents: sas-to-r/sas-vs-r-patterns/
 
     - title: "HEOR & RWE"
       contents:
         - heor-rwe/index.qmd
         - section: "Statistical Models"
-          contents:
-            - heor-rwe/stat-models/index.qmd
+          contents: heor-rwe/stat-models/
         - section: "Methods & Concepts"
-          contents:
-            - heor-rwe/methods-concepts/index.qmd
-            - heor-rwe/methods-concepts/what-if-ch1-causal-questions.qmd
+          contents: heor-rwe/methods-concepts/
         - section: "Tools & Software"
-          contents:
-            - heor-rwe/tools/index.qmd
+          contents: heor-rwe/tools/
         - section: "Resources Reviewed"
-          contents:
-            - heor-rwe/resources-reviewed/index.qmd
+          contents: heor-rwe/resources-reviewed/
 
   page-footer:
     left: "© 2026 · A learning journal in progress."
     right:
       - icon: github
-        href: https://github.com/Priya1632/Learning-Journey.git
+        href: https://github.com/Priya1632/Learning-Journey
       - icon: linkedin
         href: https://www.linkedin.com/in/priya-bodduluri/
 

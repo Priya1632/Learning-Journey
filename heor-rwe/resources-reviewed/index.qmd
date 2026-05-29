@@ -1,40 +1,12 @@
 ---
 title: "Resources Reviewed"
+listing:
+  contents: "*.qmd"
+  sort: "date desc"
+  type: grid
+  categories: true
+  fields: [title, subtitle, date, categories]
 ---
 
-Every book, course, paper, and webinar I've worked through, in one place. Rating is personal — how useful *for my goals* on a 1–5 scale, not an objective quality judgment.
-
-## Books
-
-| Resource | Status | Rating | One-line take | Detailed notes |
-|---|---|---|---|---|
-| Hernán & Robins, *Causal Inference: What If* | In progress (Pt. I) | — | The reference for causal thinking; dense but worth it. | [Ch. 1](../methods-concepts/what-if-ch1-causal-questions.qmd) |
-
-## Courses
-
-| Resource | Status | Rating | One-line take | Detailed notes |
-|---|---|---|---|---|
-| ISPOR Short Course — Causal Inference (May 17, 2026) | Upcoming | — | — | — |
-| ISPOR Short Course — Developing Decision-Grade RWE (May 17, 2026) | Upcoming | — | — | — |
-| WUSS — AI for biometrics & agentic workflows | Enrolled | — | — | — |
-| WUSS — RECIST to Kaplan-Meier oncology endpoints | Enrolled | — | — | — |
-
-## Papers
-
-*To be added as I read them.*
-
-## Webinars / Talks
-
-*To be added.*
-
----
-
-::: {.callout-tip}
-**My rating scale**
-
-- **5** — Changed how I think about a topic. Will re-read.
-- **4** — Strong, recommended; I learned a lot.
-- **3** — Useful for what it is; reference-grade.
-- **2** — Mixed; some good parts.
-- **1** — Skip.
-:::
+Every book, course, paper, webinar, and conference I've worked through. 
+Organized by date — newest first.

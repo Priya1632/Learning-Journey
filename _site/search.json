@@ -111,7 +111,6 @@
     "section": "",
     "text": "The grammar of data manipulation in R. Coming from SAS, this is the section that does the most work — proc sql and data steps map onto dplyr in mostly clean ways, but the mental model is different enough to be worth writing down.",
     "crumbs": [
-      "dplyr & tidyverse",
       "dplyr & tidyverse"
     ]
   },
@@ -122,7 +121,6 @@
     "section": "Entries",
     "text": "Entries\n\nWeek 2 — Core dplyr verbs\n\nMore entries as I progress through the 26-week plan.",
     "crumbs": [
-      "dplyr & tidyverse",
       "dplyr & tidyverse"
     ]
   },
@@ -133,8 +131,7 @@
     "section": "",
     "text": "Side-by-side translations of patterns I use every day in SAS, written in R. The point isn’t to argue one is better — it’s to make the mental jump faster when I’m in R and reaching for a SAS habit.\nPlanned entries: proc sort + first./last. → dplyr::group_by + slice, proc transpose → pivot_wider/pivot_longer, retain statements → cumsum/accumulate, merge logic, macro variables → functions and glue.\n\n\n\n Back to top",
     "crumbs": [
-      "SAS vs R patterns",
-      "SAS vs R Patterns"
+      "SAS vs R patterns"
     ]
   },
   {
@@ -144,7 +141,6 @@
     "section": "",
     "text": "The conceptual groundwork — the things that aren’t really about doing analysis but about understanding why R behaves the way it does. Entries here will cover data types, vectors vs. lists, factors, environments, NSE, and the SAS-programmer’s “wait, what?” moments.\nEntries will be added here as I work through them. Check back, or follow the repo.\n\n\n\n Back to top",
     "crumbs": [
-      "R Fundamentals",
       "R Fundamentals"
     ]
   },
@@ -155,6 +151,7 @@
     "section": "",
     "text": "Note\n\n\n\nSource: Hernán MA, Robins JM. Causal Inference: What If. Boca Raton: Chapman & Hall/CRC, 2020. Free PDF.\nThe summary below is in my own words — what I took away, why it matters to me as a biostatistician moving toward HEOR/RWE. For the actual material, read the book.",
     "crumbs": [
+      "Methods & Concepts",
       "Methods & Concepts",
       "*What If*, Ch. 1 — A definition of causal effect"
     ]
@@ -167,6 +164,7 @@
     "text": "Concept\nA causal effect, defined cleanly, is a contrast between two potential outcomes for the same unit under different treatments. For an individual, the causal effect of treatment \\(A\\) on outcome \\(Y\\) is \\(Y^{a=1} - Y^{a=0}\\) — the difference between what would happen if treated and what would happen if untreated. The fundamental problem of causal inference is that we only ever observe one of these two potential outcomes for each individual. The other is counterfactual.\nBecause individual causal effects are unidentifiable, causal inference operates at the average level: \\(E[Y^{a=1}] - E[Y^{a=0}]\\). We swap the impossible (knowing what would have happened to person \\(i\\)) for the merely difficult (estimating averages over groups under untestable assumptions).",
     "crumbs": [
       "Methods & Concepts",
+      "Methods & Concepts",
       "*What If*, Ch. 1 — A definition of causal effect"
     ]
   },
@@ -177,6 +175,7 @@
     "section": "Why it matters",
     "text": "Why it matters\nThis chapter is the conceptual fork in the road. Once you accept that:\n\nCausation is defined in terms of counterfactuals, not just associations,\nWe can never observe both potential outcomes for the same person,\nSo everything we do in causal inference is built on assumptions that license us to use observed data to estimate averages of unobserved counterfactuals —\n\n…then everything else in the book (and in HEOR/RWE practice) makes sense as machinery for making that swap defensible. Propensity scores, IPTW, target trial emulation, IV — they’re all answers to the question: given that I can’t observe counterfactuals, under what assumptions can I still get \\(E[Y^{a=1}] - E[Y^{a=0}]\\) from data I do have?\nFor my work specifically: this is the lens I need to bring to RWE. A regression with covariates is not a causal analysis just because it controls for things. It becomes one when I can write down the counterfactual contrast it estimates and the assumptions under which my estimator equals that contrast.",
     "crumbs": [
+      "Methods & Concepts",
       "Methods & Concepts",
       "*What If*, Ch. 1 — A definition of causal effect"
     ]
@@ -189,6 +188,7 @@
     "text": "My summary — key concepts that helped me understand\n\nPotential outcomes notation \\(Y^a\\). \\(Y^{a=1}\\) is the outcome a person would have under treatment; \\(Y^{a=0}\\) is the outcome the same person would have under no treatment. These are properties of the person, not of the data. Most of them are unobserved by definition.\nIndividual causal effect = \\(Y^{a=1} - Y^{a=0}\\). Defined for a person. Almost never identifiable. The point of writing it down isn’t to estimate it — it’s to be precise about what you’d want to estimate in a perfect world.\nAverage causal effect = \\(E[Y^{a=1}] - E[Y^{a=0}]\\). This is the population-level quantity we can estimate, given assumptions. It’s not just “the average of individual effects” in any practically useful sense — it’s the contrast of two whole-population means under counterfactual treatment regimes.\nCausation ≠ Association. \\(E[Y \\mid A=1] - E[Y \\mid A=0]\\) (an associational contrast) is not the same as \\(E[Y^{a=1}] - E[Y^{a=0}]\\) (a causal contrast). They’re equal only under conditions like exchangeability, which randomization buys you and observational data does not.\nThree measures of effect show up: risk difference, risk ratio, odds ratio. Different scales, different uses. For HEOR work where I’ll be reporting to decision-makers, the risk difference / absolute scale is usually the most communicative; multiplicative measures collapse base-rate information.\nSharp vs. average null hypotheses. “Treatment had no effect on anyone” (sharp null) is much stronger than “average effect is zero.” A non-zero average can hide huge heterogeneity, and a zero average can hide opposite-direction effects in subgroups. This matters for HTE work.",
     "crumbs": [
       "Methods & Concepts",
+      "Methods & Concepts",
       "*What If*, Ch. 1 — A definition of causal effect"
     ]
   },
@@ -199,6 +199,7 @@
     "section": "Things to remember",
     "text": "Things to remember\n\nWhenever I hear “the effect of \\(A\\) on \\(Y\\),” I should mentally translate to: “the contrast \\(E[Y^{a=1}] - E[Y^{a=0}]\\), under what assumptions, in what population.” If I can’t fill those blanks in, the claim isn’t well-defined yet.\nA causal claim from observational data is a claim about counterfactuals plus a defense of the assumptions that license bridging from observed to counterfactual. The defense is the analysis. The model is just the bookkeeping.\n“Confounding” in this framework is precisely the failure of exchangeability: \\(Y^a \\not\\!\\perp\\!\\!\\!\\perp A\\). That’s a much sharper definition than the usual “a third variable that distorts the relationship.”",
     "crumbs": [
+      "Methods & Concepts",
       "Methods & Concepts",
       "*What If*, Ch. 1 — A definition of causal effect"
     ]
@@ -211,6 +212,7 @@
     "text": "Code\nNo code in this chapter — it’s foundational. Code starts showing up around Chapter 11 (IP weighting) and 12 (g-formula). I’ll write up those entries as I get there, with R implementations using survey, WeightIt, and marginaleffects.",
     "crumbs": [
       "Methods & Concepts",
+      "Methods & Concepts",
       "*What If*, Ch. 1 — A definition of causal effect"
     ]
   },
@@ -222,6 +224,7 @@
     "text": "Status\nRead. Re-read introduction and 1.4 (effect measures). Moving to Chapter 2 (randomized experiments) next.",
     "crumbs": [
       "Methods & Concepts",
+      "Methods & Concepts",
       "*What If*, Ch. 1 — A definition of causal effect"
     ]
   },
@@ -232,6 +235,7 @@
     "section": "Cross-references",
     "text": "Cross-references\n\nResources Reviewed: entry for What If",
     "crumbs": [
+      "Methods & Concepts",
       "Methods & Concepts",
       "*What If*, Ch. 1 — A definition of causal effect"
     ]
@@ -277,14 +281,13 @@
     ]
   },
   {
-    "objectID": "heor-rwe/tools/index.html",
-    "href": "heor-rwe/tools/index.html",
-    "title": "Tools & Software",
+    "objectID": "heor-rwe/resources-reviewed/index.html",
+    "href": "heor-rwe/resources-reviewed/index.html",
+    "title": "Resources Reviewed",
     "section": "",
-    "text": "The R ecosystem for HEOR/RWE work. Setup notes, what each package is for, and the gotchas I hit.\nPlanned coverage: pscl (zero-inflated/hurdle models), countreg (count model diagnostics), survey (complex survey designs — essential for MEPS), marginaleffects (post-estimation, the way), MatchIt and WeightIt (PS methods), survival and survminer, cmprsk (competing risks), data sources (MEPS, CPRD, SEER-Medicare).\n\n\n\n Back to top",
+    "text": "Every book, course, paper, webinar, and conference I’ve worked through. Organized by date — newest first.\n\n\n\n\n\n\n\n\n\nMy ISPOR 2026 Experience: What I Learned & Tips to Make the Most of It\n\n\n\n\n\n\nHEOR\n\nRWE\n\nConference\n\nCareer\n\n\n\nAttended ISPOR 2026 in Philadelphia. Here’s what I took away and what I’d tell anyone heading there next time.\n\n\n\n\n\nMay 28, 2026\n\n\n\n\n\nNo matching items\n Back to top",
     "crumbs": [
-      "Tools & Software",
-      "Tools & Software"
+      "Resources Reviewed"
     ]
   },
   {
@@ -365,58 +368,85 @@
     "text": "For the first 4–6 weeks:\n\nSite is public and indexable. ✅\nDon’t link it from LinkedIn yet. ✅\nAim for one new entry per week, plus updates to the R cheatsheet whenever you learn something.\nBuild a small backlog (8–10 entries) before any active promotion.\nFirst share moment: after R/Pharma submission, or when you have a Resources Reviewed page that’s actually got reviews on it.\n\nBy the time you announce, there’s substance. Until then, it’s quietly accumulating credibility."
   },
   {
-    "objectID": "heor-rwe/resources-reviewed/index.html",
-    "href": "heor-rwe/resources-reviewed/index.html",
-    "title": "Resources Reviewed",
+    "objectID": "heor-rwe/tools/index.html",
+    "href": "heor-rwe/tools/index.html",
+    "title": "Tools & Software",
     "section": "",
-    "text": "Every book, course, paper, and webinar I’ve worked through, in one place. Rating is personal — how useful for my goals on a 1–5 scale, not an objective quality judgment.",
+    "text": "The R ecosystem for HEOR/RWE work. Setup notes, what each package is for, and the gotchas I hit.\nPlanned coverage: pscl (zero-inflated/hurdle models), countreg (count model diagnostics), survey (complex survey designs — essential for MEPS), marginaleffects (post-estimation, the way), MatchIt and WeightIt (PS methods), survival and survminer, cmprsk (competing risks), data sources (MEPS, CPRD, SEER-Medicare).\n\n\n\n Back to top",
     "crumbs": [
-      "Resources Reviewed",
-      "Resources Reviewed"
+      "Tools & Software"
     ]
   },
   {
-    "objectID": "heor-rwe/resources-reviewed/index.html#books",
-    "href": "heor-rwe/resources-reviewed/index.html#books",
-    "title": "Resources Reviewed",
-    "section": "Books",
-    "text": "Books\n\n\n\nResource\nStatus\nRating\nOne-line take\nDetailed notes\n\n\n\n\nHernán & Robins, Causal Inference: What If\nIn progress (Pt. I)\n—\nThe reference for causal thinking; dense but worth it.\nCh. 1",
+    "objectID": "heor-rwe/resources-reviewed/ispor-2026-experience.html",
+    "href": "heor-rwe/resources-reviewed/ispor-2026-experience.html",
+    "title": "My ISPOR 2026 Experience: What I Learned & Tips to Make the Most of It",
+    "section": "",
+    "text": "I attended my first ISPOR 2026 conference in Philadelphia. I enrolled in two short courses and attended one main conference day. It was a lot, in the best way. Here’s what I took away and what I’d tell anyone heading there next time.",
     "crumbs": [
       "Resources Reviewed",
-      "Resources Reviewed"
+      "Resources Reviewed",
+      "My ISPOR 2026 Experience: What I Learned & Tips to Make the Most of It"
     ]
   },
   {
-    "objectID": "heor-rwe/resources-reviewed/index.html#courses",
-    "href": "heor-rwe/resources-reviewed/index.html#courses",
-    "title": "Resources Reviewed",
-    "section": "Courses",
-    "text": "Courses\n\n\n\n\n\n\n\n\n\n\nResource\nStatus\nRating\nOne-line take\nDetailed notes\n\n\n\n\nISPOR Short Course — Causal Inference (May 17, 2026)\nUpcoming\n—\n—\n—\n\n\nISPOR Short Course — Developing Decision-Grade RWE (May 17, 2026)\nUpcoming\n—\n—\n—\n\n\nWUSS — AI for biometrics & agentic workflows\nEnrolled\n—\n—\n—\n\n\nWUSS — RECIST to Kaplan-Meier oncology endpoints\nEnrolled\n—\n—\n—",
+    "objectID": "heor-rwe/resources-reviewed/ispor-2026-experience.html#go-in-with-a-clear-goal",
+    "href": "heor-rwe/resources-reviewed/ispor-2026-experience.html#go-in-with-a-clear-goal",
+    "title": "My ISPOR 2026 Experience: What I Learned & Tips to Make the Most of It",
+    "section": "Go in with a clear goal",
+    "text": "Go in with a clear goal\nISPOR is massive. Without a goal, it’s easy to wander. Before you go, identify the area you want to grow in, whether that’s real-world evidence, comparative effectiveness, causal inference, whatever it is. That focus shapes everything: which sessions you attend, which booths you visit, which conversations you seek out.\nFor me, I’m actively building toward HEOR and RWE, so I chose my short courses around that. I attended:\n\nCausal Inference and Causal Diagrams in Big, Real-World Observational Data and Pragmatic Trials\nDeveloping Decision-Grade Real-World Evidence\n\nBoth aligned directly with where I want to grow and being in a room full of people working on the same problems made it immediately clear who I wanted to talk to. That’s the point. Your goal doesn’t have to be complicated, just intentional.",
     "crumbs": [
       "Resources Reviewed",
-      "Resources Reviewed"
+      "Resources Reviewed",
+      "My ISPOR 2026 Experience: What I Learned & Tips to Make the Most of It"
     ]
   },
   {
-    "objectID": "heor-rwe/resources-reviewed/index.html#papers",
-    "href": "heor-rwe/resources-reviewed/index.html#papers",
-    "title": "Resources Reviewed",
-    "section": "Papers",
-    "text": "Papers\nTo be added as I read them.",
+    "objectID": "heor-rwe/resources-reviewed/ispor-2026-experience.html#network-intentionally-not-aggressively",
+    "href": "heor-rwe/resources-reviewed/ispor-2026-experience.html#network-intentionally-not-aggressively",
+    "title": "My ISPOR 2026 Experience: What I Learned & Tips to Make the Most of It",
+    "section": "Network intentionally, not aggressively",
+    "text": "Network intentionally, not aggressively\nSet a realistic target — 3 to 5 genuine conversations. Not just LinkedIn connections. Conversations.\nPoster sessions are underrated for this. Find research that interests you, walk up, ask the presenter about their work. People love talking about their research. Ask if they’re open to collaboration. Connect on LinkedIn. That’s it.\nIf you’re interested in a specific area, say, comparative effectiveness — browse the poster presentations beforehand, find what genuinely fascinates you, and make a plan to talk to those presenters. It’s a natural, low-pressure way to start a real conversation.\nIf you’re interested in a company, visit their booth, ideally in the morning before it gets crowded. Ask for methodology folks if you want to understand their tools and approach. Ask for HR if you’re exploring opportunities. Be direct, be friendly.",
     "crumbs": [
       "Resources Reviewed",
-      "Resources Reviewed"
+      "Resources Reviewed",
+      "My ISPOR 2026 Experience: What I Learned & Tips to Make the Most of It"
     ]
   },
   {
-    "objectID": "heor-rwe/resources-reviewed/index.html#webinars-talks",
-    "href": "heor-rwe/resources-reviewed/index.html#webinars-talks",
-    "title": "Resources Reviewed",
-    "section": "Webinars / Talks",
-    "text": "Webinars / Talks\nTo be added.\n\n\n\n\n\n\n\nTip\n\n\n\nMy rating scale\n\n5 — Changed how I think about a topic. Will re-read.\n4 — Strong, recommended; I learned a lot.\n3 — Useful for what it is; reference-grade.\n2 — Mixed; some good parts.\n1 — Skip.",
+    "objectID": "heor-rwe/resources-reviewed/ispor-2026-experience.html#plan-before-you-arrive",
+    "href": "heor-rwe/resources-reviewed/ispor-2026-experience.html#plan-before-you-arrive",
+    "title": "My ISPOR 2026 Experience: What I Learned & Tips to Make the Most of It",
+    "section": "Plan before you arrive",
+    "text": "Plan before you arrive\nDownload the ISPOR app — it’s genuinely useful. Before the conference:\n\nFinalize your short courses and plenary sessions\nBrowse the attendee list and flag interesting profiles\nReview the exhibitor list and make a priority ordered list of booths to visit\n\nKeep only your planned sessions in the app so you’re not distracted scrolling through everything else.",
     "crumbs": [
       "Resources Reviewed",
-      "Resources Reviewed"
+      "Resources Reviewed",
+      "My ISPOR 2026 Experience: What I Learned & Tips to Make the Most of It"
+    ]
+  },
+  {
+    "objectID": "heor-rwe/resources-reviewed/ispor-2026-experience.html#use-your-in-person-time-wisely",
+    "href": "heor-rwe/resources-reviewed/ispor-2026-experience.html#use-your-in-person-time-wisely",
+    "title": "My ISPOR 2026 Experience: What I Learned & Tips to Make the Most of It",
+    "section": "Use your in-person time wisely",
+    "text": "Use your in-person time wisely\nMost sessions are recorded. Your competitive advantage at the conference is being there hands-on workshops, live debates, poster conversations, hallway chats. Prioritize the things that don’t translate to a recording.",
+    "crumbs": [
+      "Resources Reviewed",
+      "Resources Reviewed",
+      "My ISPOR 2026 Experience: What I Learned & Tips to Make the Most of It"
+    ]
+  },
+  {
+    "objectID": "heor-rwe/resources-reviewed/ispor-2026-experience.html#practical-stuff-that-actually-matters",
+    "href": "heor-rwe/resources-reviewed/ispor-2026-experience.html#practical-stuff-that-actually-matters",
+    "title": "My ISPOR 2026 Experience: What I Learned & Tips to Make the Most of It",
+    "section": "Practical stuff that actually matters",
+    "text": "Practical stuff that actually matters\n\nWear comfortable shoes. Seriously. The walking is brutal.\nBring protein bars and water. You’ll thank yourself.\nDon’t overdo it. One focused day beats three burned-out ones.\nTalk to people. Even just a hi. Everyone is approachable. You never know where a conversation leads.\n\n\nHopefully this helps. Keep it simple, planned, and focused - that’s what worked for me. :)",
+    "crumbs": [
+      "Resources Reviewed",
+      "Resources Reviewed",
+      "My ISPOR 2026 Experience: What I Learned & Tips to Make the Most of It"
     ]
   },
   {
@@ -426,7 +456,6 @@
     "section": "",
     "text": "The conceptual layer above the models — how to ask the right causal question, how to design a study, how to think about confounding and identification before reaching for an estimator.",
     "crumbs": [
-      "Methods & Concepts",
       "Methods & Concepts"
     ]
   },
@@ -437,7 +466,6 @@
     "section": "Entries",
     "text": "Entries\n\nWhat If, Ch. 1 — A definition of causal effect\n\nPlanned: target trial emulation, propensity scores (matching vs. weighting vs. stratification), IV methods, regression discontinuity, sensitivity analysis (E-values), study designs in RWE.",
     "crumbs": [
-      "Methods & Concepts",
       "Methods & Concepts"
     ]
   },
@@ -448,7 +476,6 @@
     "section": "",
     "text": "Model families I’m building working knowledge of for HEOR/RWE. Each entry follows the same structure: the model, the assumptions, when to use it, R code, diagnostics, and what tripped me up.\nPlanned: Poisson regression, negative binomial, zero-inflated Poisson, ZINB (the anchor project model), hurdle models, GLMs for cost (gamma, log-link), Cox PH refresher in R, mixed models with lme4.\n\n\n\n Back to top",
     "crumbs": [
-      "Statistical Models",
       "Statistical Models"
     ]
   },
@@ -459,7 +486,6 @@
     "section": "",
     "text": "The R packages built specifically for clinical trial work: admiral (ADaM datasets), xportr (XPT v5 transport files), metacore/metatools (specs and metadata), tfrmt (tables), pharmaversesdtm (test data). This is the stack that makes R viable for regulated submissions.\nEntries to come as I incorporate these into real ADaM work.\n\n\n\n Back to top",
     "crumbs": [
-      "pharmaverse",
       "pharmaverse"
     ]
   },
@@ -511,6 +537,7 @@
     "text": "dplyr gives you a small set of “verbs” that each do one thing to a data frame and return a data frame. The point is that any data manipulation, no matter how complicated, decomposes into a chain of these verbs piped together with |&gt; (or %&gt;%). That’s the whole grammar.\nThe six core verbs:\n\n\n\n\n\n\n\n\nVerb\nWhat it does\nSAS analog\n\n\n\n\nselect()\nPick columns\nkeep / drop in a data step; select in proc sql\n\n\nfilter()\nPick rows by condition\nwhere clause; if statement\n\n\narrange()\nSort rows\nproc sort\n\n\nmutate()\nAdd or change columns\nassignment in a data step\n\n\nsummarize()\nCollapse rows to summary stats\nproc means / proc summary\n\n\ngroup_by()\nSet the grouping for later verbs\nby statement",
     "crumbs": [
       "dplyr & tidyverse",
+      "dplyr & tidyverse",
       "Week 2 — Core dplyr verbs"
     ]
   },
@@ -521,6 +548,7 @@
     "section": "",
     "text": "dplyr gives you a small set of “verbs” that each do one thing to a data frame and return a data frame. The point is that any data manipulation, no matter how complicated, decomposes into a chain of these verbs piped together with |&gt; (or %&gt;%). That’s the whole grammar.\nThe six core verbs:\n\n\n\n\n\n\n\n\nVerb\nWhat it does\nSAS analog\n\n\n\n\nselect()\nPick columns\nkeep / drop in a data step; select in proc sql\n\n\nfilter()\nPick rows by condition\nwhere clause; if statement\n\n\narrange()\nSort rows\nproc sort\n\n\nmutate()\nAdd or change columns\nassignment in a data step\n\n\nsummarize()\nCollapse rows to summary stats\nproc means / proc summary\n\n\ngroup_by()\nSet the grouping for later verbs\nby statement",
     "crumbs": [
+      "dplyr & tidyverse",
       "dplyr & tidyverse",
       "Week 2 — Core dplyr verbs"
     ]
@@ -533,6 +561,7 @@
     "text": "Why it matters\nIn SAS, “manipulating data” usually means writing a data step or a proc sql. The mental model is procedural: read each row, do something, output. In dplyr, the model is transformational: take a table, return a table. Once you internalize that, complex pipelines stop feeling like programming and start feeling like writing.\nFor ADaM work specifically, this matters because most ADaM derivations are exactly this shape — take SDTM, filter, join, derive, summarize. admiral is built on dplyr.",
     "crumbs": [
       "dplyr & tidyverse",
+      "dplyr & tidyverse",
       "Week 2 — Core dplyr verbs"
     ]
   },
@@ -543,6 +572,7 @@
     "section": "Code: a worked example",
     "text": "Code: a worked example\n\nlibrary(dplyr)\n\n# A tiny PK-shaped dataset\nadpc &lt;- tibble::tribble(\n  ~USUBJID,    ~AVISIT,    ~ATPT,     ~AVAL,\n  \"001\",       \"Cycle 1\",  \"Pre-dose\", 0.0,\n  \"001\",       \"Cycle 1\",  \"1 hr\",     12.4,\n  \"001\",       \"Cycle 1\",  \"4 hr\",     8.1,\n  \"002\",       \"Cycle 1\",  \"Pre-dose\", 0.0,\n  \"002\",       \"Cycle 1\",  \"1 hr\",     14.7,\n  \"002\",       \"Cycle 1\",  \"4 hr\",     9.3\n)\n\n# Cmax per subject per visit\nadpc |&gt;\n  filter(ATPT != \"Pre-dose\") |&gt;\n  group_by(USUBJID, AVISIT) |&gt;\n  summarize(CMAX = max(AVAL), .groups = \"drop\") |&gt;\n  arrange(USUBJID, AVISIT)\n\nThe pipe |&gt; reads left-to-right: take adpc, then drop pre-dose rows, then group by subject and visit, then collapse to the max, then sort. Each step is a verb. The whole pipeline is one expression.",
     "crumbs": [
+      "dplyr & tidyverse",
       "dplyr & tidyverse",
       "Week 2 — Core dplyr verbs"
     ]
@@ -555,6 +585,7 @@
     "text": "Resources used\n\nR for Data Science (2e), Wickham, Çetinkaya-Rundel, Grolemund — Chapters 3–5 (free online). The canonical introduction.\ndplyr cheatsheet from Posit (PDF). Print it. Tape it up.\nvignette(\"dplyr\") — the package’s own intro, runs in the console.",
     "crumbs": [
       "dplyr & tidyverse",
+      "dplyr & tidyverse",
       "Week 2 — Core dplyr verbs"
     ]
   },
@@ -565,6 +596,7 @@
     "section": "My summary — the things I want to remember",
     "text": "My summary — the things I want to remember\n\nPipes pass the left side as the first argument. x |&gt; f(y) is f(x, y). Almost all dplyr verbs take the data frame as the first argument because of the pipe.\ngroup_by() is sticky. Once a tibble is grouped, every subsequent verb respects the grouping until you ungroup() or use .groups = \"drop\" in summarize(). Forgetting this causes hours of confused debugging.\nsummarize() collapses, mutate() doesn’t. If you want a per-group statistic added back as a column without collapsing, use mutate() after group_by(), not summarize().\nselect() can rename in place: select(adpc, subject = USUBJID). Faster than calling rename() separately.\nfilter() drops NA silently when the condition involves an NA-producing comparison. If you want to keep NAs, use filter(is.na(x) | x &gt; 0).\nThe .by argument in dplyr 1.1+ lets you do per-call grouping without group_by() + ungroup(): summarize(adpc, CMAX = max(AVAL), .by = c(USUBJID, AVISIT)). Cleaner for one-off aggregations.",
     "crumbs": [
+      "dplyr & tidyverse",
       "dplyr & tidyverse",
       "Week 2 — Core dplyr verbs"
     ]
@@ -577,6 +609,7 @@
     "text": "Gotchas / things to remember for coding in R\n\n\n\n\n\n\nWarning\n\n\n\nR is case-sensitive. Filter is not filter. USUBJID is not usubjid. SAS forgives case in variable names by default — R never does.\n\n\n\ndplyr::filter() is masked by stats::filter() (a time-series function loaded by default). If you ever get bizarre errors from filter(), prefix it as dplyr::filter() to be sure.\nsummarise() and summarize() are both valid — Wickham gave us both spellings. Pick one and stick with it.\nn() only works inside dplyr verbs. It’s not a base R function. nrow(x) is the equivalent for the whole tibble.\nStrings: dplyr uses bare column names (NSE), but values are quoted strings. filter(adpc, AVISIT == \"Cycle 1\") — the column is bare, the comparison value is in quotes.\n== for equality, not =. = is assignment-in-an-argument and will not error the way you’d hope; it’ll just behave weirdly.\nThe pipe |&gt; is base R (4.1+); %&gt;% is from magrittr/dplyr. They’re almost identical but not quite. For new code, prefer |&gt;.",
     "crumbs": [
       "dplyr & tidyverse",
+      "dplyr & tidyverse",
       "Week 2 — Core dplyr verbs"
     ]
   },
@@ -587,6 +620,7 @@
     "section": "Status",
     "text": "Status\nIn progress. Next: pivots (pivot_longer/pivot_wider) and joins.",
     "crumbs": [
+      "dplyr & tidyverse",
       "dplyr & tidyverse",
       "Week 2 — Core dplyr verbs"
     ]

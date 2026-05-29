@@ -6,9 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2026-04-30">
+<meta name="dcterms.date" content="2026-05-28">
+<meta name="description" content="Attended ISPOR 2026 in Philadelphia. Here’s what I took away and what I’d tell anyone heading there next time.">
 
-<title>What If, Ch. 1 — A definition of causal effect – From SAS to R, and into HEOR/RWE</title>
+<title>My ISPOR 2026 Experience: What I Learned &amp; Tips to Make the Most of It – From SAS to R, and into HEOR/RWE</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -34,8 +35,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../heor-rwe/tools/index.html" rel="next">
-<link href="../../heor-rwe/methods-concepts/index.html" rel="prev">
+<link href="../../heor-rwe/resources-reviewed/index.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -79,35 +79,6 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../../assets/styles.css">
 </head>
@@ -369,7 +340,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../heor-rwe/methods-concepts/index.html">Methods &amp; Concepts</a></li><li class="breadcrumb-item"><a href="../../heor-rwe/methods-concepts/index.html">Methods &amp; Concepts</a></li><li class="breadcrumb-item"><a href="../../heor-rwe/methods-concepts/what-if-ch1-causal-questions.html"><em>What If</em>, Ch. 1 — A definition of causal effect</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../heor-rwe/resources-reviewed/index.html">Resources Reviewed</a></li><li class="breadcrumb-item"><a href="../../heor-rwe/resources-reviewed/index.html">Resources Reviewed</a></li><li class="breadcrumb-item"><a href="../../heor-rwe/resources-reviewed/ispor-2026-experience.html">My ISPOR 2026 Experience: What I Learned &amp; Tips to Make the Most of It</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -417,14 +388,14 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../../heor-rwe/methods-concepts/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Methods &amp; Concepts</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 show">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../heor-rwe/methods-concepts/what-if-ch1-causal-questions.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../heor-rwe/methods-concepts/what-if-ch1-causal-questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><em>What If</em>, Ch. 1 — A definition of causal effect</span></a>
   </div>
 </li>
@@ -462,14 +433,14 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../../heor-rwe/resources-reviewed/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Resources Reviewed</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../heor-rwe/resources-reviewed/ispor-2026-experience.html" class="sidebar-item-text sidebar-link">
+  <a href="../../heor-rwe/resources-reviewed/ispor-2026-experience.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">My ISPOR 2026 Experience: What I Learned &amp; Tips to Make the Most of It</span></a>
   </div>
 </li>
@@ -487,31 +458,34 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#concept" id="toc-concept" class="nav-link active" data-scroll-target="#concept">Concept</a></li>
-  <li><a href="#why-it-matters" id="toc-why-it-matters" class="nav-link" data-scroll-target="#why-it-matters">Why it matters</a></li>
-  <li><a href="#my-summary-key-concepts-that-helped-me-understand" id="toc-my-summary-key-concepts-that-helped-me-understand" class="nav-link" data-scroll-target="#my-summary-key-concepts-that-helped-me-understand">My summary — key concepts that helped me understand</a></li>
-  <li><a href="#things-to-remember" id="toc-things-to-remember" class="nav-link" data-scroll-target="#things-to-remember">Things to remember</a></li>
-  <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a></li>
-  <li><a href="#status" id="toc-status" class="nav-link" data-scroll-target="#status">Status</a></li>
-  <li><a href="#cross-references" id="toc-cross-references" class="nav-link" data-scroll-target="#cross-references">Cross-references</a></li>
+  <li><a href="#go-in-with-a-clear-goal" id="toc-go-in-with-a-clear-goal" class="nav-link active" data-scroll-target="#go-in-with-a-clear-goal">Go in with a clear goal</a></li>
+  <li><a href="#network-intentionally-not-aggressively" id="toc-network-intentionally-not-aggressively" class="nav-link" data-scroll-target="#network-intentionally-not-aggressively">Network intentionally, not aggressively</a></li>
+  <li><a href="#plan-before-you-arrive" id="toc-plan-before-you-arrive" class="nav-link" data-scroll-target="#plan-before-you-arrive">Plan before you arrive</a></li>
+  <li><a href="#use-your-in-person-time-wisely" id="toc-use-your-in-person-time-wisely" class="nav-link" data-scroll-target="#use-your-in-person-time-wisely">Use your in-person time wisely</a></li>
+  <li><a href="#practical-stuff-that-actually-matters" id="toc-practical-stuff-that-actually-matters" class="nav-link" data-scroll-target="#practical-stuff-that-actually-matters">Practical stuff that actually matters</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/Priya1632/Learning-Journey/edit/main/heor-rwe/methods-concepts/what-if-ch1-causal-questions.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/Priya1632/Learning-Journey/blob/main/heor-rwe/methods-concepts/what-if-ch1-causal-questions.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/Priya1632/Learning-Journey/edit/main/heor-rwe/resources-reviewed/ispor-2026-experience.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/Priya1632/Learning-Journey/blob/main/heor-rwe/resources-reviewed/ispor-2026-experience.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../heor-rwe/methods-concepts/index.html">Methods &amp; Concepts</a></li><li class="breadcrumb-item"><a href="../../heor-rwe/methods-concepts/index.html">Methods &amp; Concepts</a></li><li class="breadcrumb-item"><a href="../../heor-rwe/methods-concepts/what-if-ch1-causal-questions.html"><em>What If</em>, Ch. 1 — A definition of causal effect</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../heor-rwe/resources-reviewed/index.html">Resources Reviewed</a></li><li class="breadcrumb-item"><a href="../../heor-rwe/resources-reviewed/index.html">Resources Reviewed</a></li><li class="breadcrumb-item"><a href="../../heor-rwe/resources-reviewed/ispor-2026-experience.html">My ISPOR 2026 Experience: What I Learned &amp; Tips to Make the Most of It</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><em>What If</em>, Ch. 1 — A definition of causal effect</h1>
-<p class="subtitle lead">Hernán &amp; Robins, <em>Causal Inference: What If</em> — counterfactuals, individual vs.&nbsp;average effects, association ≠ causation</p>
+<h1 class="title">My ISPOR 2026 Experience: What I Learned &amp; Tips to Make the Most of It</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">causal-inference</div>
-    <div class="quarto-category">what-if</div>
-    <div class="quarto-category">methods</div>
+    <div class="quarto-category">HEOR</div>
+    <div class="quarto-category">RWE</div>
+    <div class="quarto-category">Conference</div>
+    <div class="quarto-category">Career</div>
   </div>
   </div>
 
+<div>
+  <div class="description">
+    Attended ISPOR 2026 in Philadelphia. Here’s what I took away and what I’d tell anyone heading there next time.
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
@@ -520,7 +494,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">April 30, 2026</p>
+      <p class="date">May 28, 2026</p>
     </div>
   </div>
   
@@ -532,68 +506,53 @@ window.Quarto = {
 </header>
 
 
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Source:</strong> Hernán MA, Robins JM. <em>Causal Inference: What If</em>. Boca Raton: Chapman &amp; Hall/CRC, 2020. <a href="https://miguelhernan.org/whatifbook">Free PDF</a>.</p>
-<p>The summary below is in <strong>my own words</strong> — what I took away, why it matters to me as a biostatistician moving toward HEOR/RWE. For the actual material, read the book.</p>
-</div>
-</div>
-<section id="concept" class="level2">
-<h2 class="anchored" data-anchor-id="concept">Concept</h2>
-<p>A causal effect, defined cleanly, is a contrast between <strong>two potential outcomes for the same unit under different treatments</strong>. For an individual, the causal effect of treatment <span class="math inline">\(A\)</span> on outcome <span class="math inline">\(Y\)</span> is <span class="math inline">\(Y^{a=1} - Y^{a=0}\)</span> — the difference between what would happen <em>if treated</em> and what would happen <em>if untreated</em>. The fundamental problem of causal inference is that we only ever observe one of these two potential outcomes for each individual. The other is counterfactual.</p>
-<p>Because individual causal effects are unidentifiable, causal inference operates at the <strong>average</strong> level: <span class="math inline">\(E[Y^{a=1}] - E[Y^{a=0}]\)</span>. We swap the impossible (knowing what <em>would have happened</em> to person <span class="math inline">\(i\)</span>) for the merely difficult (estimating averages over groups under untestable assumptions).</p>
-</section>
-<section id="why-it-matters" class="level2">
-<h2 class="anchored" data-anchor-id="why-it-matters">Why it matters</h2>
-<p>This chapter is the conceptual fork in the road. Once you accept that:</p>
-<ol type="1">
-<li>Causation is defined in terms of counterfactuals, not just associations,</li>
-<li>We can never observe both potential outcomes for the same person,</li>
-<li>So everything we do in causal inference is built on assumptions that license us to use observed data to estimate averages of unobserved counterfactuals —</li>
-</ol>
-<p>…then everything else in the book (and in HEOR/RWE practice) makes sense as machinery for making that swap defensible. Propensity scores, IPTW, target trial emulation, IV — they’re all answers to the question: <em>given that I can’t observe counterfactuals, under what assumptions can I still get <span class="math inline">\(E[Y^{a=1}] - E[Y^{a=0}]\)</span> from data I do have?</em></p>
-<p>For my work specifically: this is the lens I need to bring to RWE. A regression with covariates is not a causal analysis just because it controls for things. It becomes one when I can write down the counterfactual contrast it estimates and the assumptions under which my estimator equals that contrast.</p>
-</section>
-<section id="my-summary-key-concepts-that-helped-me-understand" class="level2">
-<h2 class="anchored" data-anchor-id="my-summary-key-concepts-that-helped-me-understand">My summary — key concepts that helped me understand</h2>
+<p>I attended my first ISPOR 2026 conference in Philadelphia. I enrolled in two short courses and attended one main conference day. It was a lot, in the best way. Here’s what I took away and what I’d tell anyone heading there next time.</p>
+<hr>
+<section id="go-in-with-a-clear-goal" class="level2">
+<h2 class="anchored" data-anchor-id="go-in-with-a-clear-goal">Go in with a clear goal</h2>
+<p>ISPOR is massive. Without a goal, it’s easy to wander. Before you go, identify the area you want to grow in, whether that’s real-world evidence, comparative effectiveness, causal inference, whatever it is. That focus shapes everything: which sessions you attend, which booths you visit, which conversations you seek out.</p>
+<p>For me, I’m actively building toward HEOR and RWE, so I chose my short courses around that. I attended:</p>
 <ul>
-<li><p><strong>Potential outcomes notation <span class="math inline">\(Y^a\)</span>.</strong> <span class="math inline">\(Y^{a=1}\)</span> is the outcome a person <em>would have</em> under treatment; <span class="math inline">\(Y^{a=0}\)</span> is the outcome the same person <em>would have</em> under no treatment. These are properties of the person, not of the data. Most of them are unobserved by definition.</p></li>
-<li><p><strong>Individual causal effect = <span class="math inline">\(Y^{a=1} - Y^{a=0}\)</span>.</strong> Defined for a person. Almost never identifiable. The point of writing it down isn’t to estimate it — it’s to be precise about what you’d want to estimate in a perfect world.</p></li>
-<li><p><strong>Average causal effect = <span class="math inline">\(E[Y^{a=1}] - E[Y^{a=0}]\)</span>.</strong> This is the population-level quantity we <em>can</em> estimate, given assumptions. It’s not just “the average of individual effects” in any practically useful sense — it’s the contrast of two whole-population means under counterfactual treatment regimes.</p></li>
-<li><p><strong>Causation ≠ Association.</strong> <span class="math inline">\(E[Y \mid A=1] - E[Y \mid A=0]\)</span> (an associational contrast) is <em>not</em> the same as <span class="math inline">\(E[Y^{a=1}] - E[Y^{a=0}]\)</span> (a causal contrast). They’re equal only under conditions like exchangeability, which randomization buys you and observational data does not.</p></li>
-<li><p><strong>Three measures of effect</strong> show up: risk difference, risk ratio, odds ratio. Different scales, different uses. For HEOR work where I’ll be reporting to decision-makers, the <strong>risk difference / absolute scale</strong> is usually the most communicative; multiplicative measures collapse base-rate information.</p></li>
-<li><p><strong>Sharp vs.&nbsp;average null hypotheses.</strong> “Treatment had no effect on anyone” (sharp null) is much stronger than “average effect is zero.” A non-zero average can hide huge heterogeneity, and a zero average can hide opposite-direction effects in subgroups. This matters for HTE work.</p></li>
+<li><strong>Causal Inference and Causal Diagrams in Big, Real-World Observational Data and Pragmatic Trials</strong></li>
+<li><strong>Developing Decision-Grade Real-World Evidence</strong></li>
 </ul>
+<p>Both aligned directly with where I want to grow and being in a room full of people working on the same problems made it immediately clear who I wanted to talk to. That’s the point. Your goal doesn’t have to be complicated, just intentional.</p>
+<hr>
 </section>
-<section id="things-to-remember" class="level2">
-<h2 class="anchored" data-anchor-id="things-to-remember">Things to remember</h2>
+<section id="network-intentionally-not-aggressively" class="level2">
+<h2 class="anchored" data-anchor-id="network-intentionally-not-aggressively">Network intentionally, not aggressively</h2>
+<p>Set a realistic target — 3 to 5 genuine conversations. Not just LinkedIn connections. Conversations.</p>
+<p><strong>Poster sessions are underrated for this.</strong> Find research that interests you, walk up, ask the presenter about their work. People love talking about their research. Ask if they’re open to collaboration. Connect on LinkedIn. That’s it.</p>
+<p>If you’re interested in a specific area, say, comparative effectiveness — browse the poster presentations beforehand, find what genuinely fascinates you, and make a plan to talk to those presenters. It’s a natural, low-pressure way to start a real conversation.</p>
+<p>If you’re interested in a company, visit their booth, ideally in the morning before it gets crowded. Ask for methodology folks if you want to understand their tools and approach. Ask for HR if you’re exploring opportunities. Be direct, be friendly.</p>
+<hr>
+</section>
+<section id="plan-before-you-arrive" class="level2">
+<h2 class="anchored" data-anchor-id="plan-before-you-arrive">Plan before you arrive</h2>
+<p>Download the ISPOR app — it’s genuinely useful. Before the conference:</p>
 <ul>
-<li>Whenever I hear “the effect of <span class="math inline">\(A\)</span> on <span class="math inline">\(Y\)</span>,” I should mentally translate to: “the contrast <span class="math inline">\(E[Y^{a=1}] - E[Y^{a=0}]\)</span>, under what assumptions, in what population.” If I can’t fill those blanks in, the claim isn’t well-defined yet.</li>
-<li>A causal claim from observational data is a claim about counterfactuals <strong>plus</strong> a defense of the assumptions that license bridging from observed to counterfactual. The defense is the analysis. The model is just the bookkeeping.</li>
-<li>“Confounding” in this framework is precisely the failure of exchangeability: <span class="math inline">\(Y^a \not\!\perp\!\!\!\perp A\)</span>. That’s a much sharper definition than the usual “a third variable that distorts the relationship.”</li>
+<li>Finalize your short courses and plenary sessions</li>
+<li>Browse the attendee list and flag interesting profiles</li>
+<li>Review the exhibitor list and make a priority ordered list of booths to visit</li>
 </ul>
+<p>Keep only your planned sessions in the app so you’re not distracted scrolling through everything else.</p>
+<hr>
 </section>
-<section id="code" class="level2">
-<h2 class="anchored" data-anchor-id="code">Code</h2>
-<p>No code in this chapter — it’s foundational. Code starts showing up around Chapter 11 (IP weighting) and 12 (g-formula). I’ll write up those entries as I get there, with R implementations using <code>survey</code>, <code>WeightIt</code>, and <code>marginaleffects</code>.</p>
+<section id="use-your-in-person-time-wisely" class="level2">
+<h2 class="anchored" data-anchor-id="use-your-in-person-time-wisely">Use your in-person time wisely</h2>
+<p>Most sessions are recorded. Your competitive advantage at the conference is being <em>there</em> hands-on workshops, live debates, poster conversations, hallway chats. Prioritize the things that don’t translate to a recording.</p>
+<hr>
 </section>
-<section id="status" class="level2">
-<h2 class="anchored" data-anchor-id="status">Status</h2>
-<p>Read. Re-read introduction and 1.4 (effect measures). Moving to Chapter 2 (randomized experiments) next.</p>
-</section>
-<section id="cross-references" class="level2">
-<h2 class="anchored" data-anchor-id="cross-references">Cross-references</h2>
+<section id="practical-stuff-that-actually-matters" class="level2">
+<h2 class="anchored" data-anchor-id="practical-stuff-that-actually-matters">Practical stuff that actually matters</h2>
 <ul>
-<li><em>Resources Reviewed:</em> <a href="../../heor-rwe/resources-reviewed/index.html#books">entry for <em>What If</em></a></li>
+<li><strong>Wear comfortable shoes.</strong> Seriously. The walking is brutal.</li>
+<li><strong>Bring protein bars and water.</strong> You’ll thank yourself.</li>
+<li><strong>Don’t overdo it.</strong> One focused day beats three burned-out ones.</li>
+<li><strong>Talk to people.</strong> Even just a hi. Everyone is approachable. You never know where a conversation leads.</li>
 </ul>
+<hr>
+<p>Hopefully this helps. Keep it simple, planned, and focused - that’s what worked for me. :)</p>
 
 
 </section>
@@ -1014,14 +973,11 @@ Note
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../heor-rwe/methods-concepts/index.html" class="pagination-link" aria-label="Methods &amp; Concepts">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Methods &amp; Concepts</span>
+      <a href="../../heor-rwe/resources-reviewed/index.html" class="pagination-link" aria-label="Resources Reviewed">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Resources Reviewed</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../heor-rwe/tools/index.html" class="pagination-link" aria-label="Tools &amp; Software">
-        <span class="nav-page-text">Tools &amp; Software</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
@@ -1032,7 +988,7 @@ Note
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Priya1632/Learning-Journey/edit/main/heor-rwe/methods-concepts/what-if-ch1-causal-questions.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/Priya1632/Learning-Journey/blob/main/heor-rwe/methods-concepts/what-if-ch1-causal-questions.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Priya1632/Learning-Journey/edit/main/heor-rwe/resources-reviewed/ispor-2026-experience.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/Priya1632/Learning-Journey/blob/main/heor-rwe/resources-reviewed/ispor-2026-experience.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">

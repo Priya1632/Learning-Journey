@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>HEOR &amp; RWE – From SAS to R, and into HEOR/RWE</title>
+<title>HEOR &amp; RWE Knowledge Base – From SAS to R, and into HEOR/RWE</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -33,27 +33,26 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../heor-rwe/stat-models/index.html" rel="next">
+<link href="../heor-rwe/tools/index.html" rel="next">
+<link href="../SETUP.html" rel="prev">
+<script src="../site_libs/quarto-listing/list.min.js"></script>
+<script src="../site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-92b4efa5a00fd0636b70fb36335b7b6c.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-08a587f1b25f2b58eba723b444250cc8.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-92b4efa5a00fd0636b70fb36335b7b6c.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-847d0801d052392e246acc156acdd757.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-982ba22e7aae70396ce6f260588cd927.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-847d0801d052392e246acc156acdd757.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-45431c2918bd31147ddb3fa7038bb99f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
-  "location": "navbar",
+  "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
-  "panel-placement": "end",
-  "type": "overlay",
+  "panel-placement": "start",
+  "type": "textbox",
   "limit": 50,
   "keyboard-shortcut": [
     "f",
@@ -75,291 +74,119 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<style>html{ scroll-behavior: smooth; }</style>
+<script>
 
-
-<link rel="stylesheet" href="../assets/styles.css">
-</head>
-
-<body class="nav-sidebar docked nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
-    const toggleBodyColorMode = (bsSheetEl) => {
-      const mode = bsSheetEl.getAttribute("data-mode");
-      const bodyEl = window.document.querySelector("body");
-      if (mode === "dark") {
-        bodyEl.classList.add("quarto-dark");
-        bodyEl.classList.remove("quarto-light");
-      } else {
-        bodyEl.classList.add("quarto-light");
-        bodyEl.classList.remove("quarto-dark");
-      }
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
     }
-    const toggleBodyColorPrimary = () => {
-      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
-      if (bsSheetEl) {
-        toggleBodyColorMode(bsSheetEl);
-      }
-    }
-    const setColorSchemeToggle = (alternate) => {
-      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-      for (let i=0; i < toggles.length; i++) {
-        const toggle = toggles[i];
-        if (toggle) {
-          if (alternate) {
-            toggle.classList.add("alternate");
-          } else {
-            toggle.classList.remove("alternate");
-          }
-        }
-      }
+
+    const options = {
+      valueNames: ['listing-date','listing-title','listing-author',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
+      
+      searchColumns: ["listing-date","listing-title","listing-author"],
     };
-    const toggleColorMode = (alternate) => {
-      // Switch the stylesheets
-      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
-      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-      manageTransitions('#quarto-margin-sidebar .nav-link', false);
-      if (alternate) {
-        // note: dark is layered on light, we don't disable primary!
-        enableStylesheet(alternateStylesheets);
-        for (const sheetNode of alternateStylesheets) {
-          if (sheetNode.id === "quarto-bootstrap") {
-            toggleBodyColorMode(sheetNode);
-          }
-        }
-      } else {
-        disableStylesheet(alternateStylesheets);
-        enableStylesheet(primaryStylesheets)
-        toggleBodyColorPrimary();
-      }
-      manageTransitions('#quarto-margin-sidebar .nav-link', true);
-      // Switch the toggles
-      setColorSchemeToggle(alternate)
-      // Hack to workaround the fact that safari doesn't
-      // properly recolor the scrollbar when toggling (#1455)
-      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-        manageTransitions("body", false);
-        window.scrollTo(0, 1);
-        setTimeout(() => {
-          window.scrollTo(0, 0);
-          manageTransitions("body", true);
-        }, 40);
-      }
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
     }
-    const disableStylesheet = (stylesheets) => {
-      for (let i=0; i < stylesheets.length; i++) {
-        const stylesheet = stylesheets[i];
-        stylesheet.rel = 'disabled-stylesheet';
-      }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
     }
-    const enableStylesheet = (stylesheets) => {
-      for (let i=0; i < stylesheets.length; i++) {
-        const stylesheet = stylesheets[i];
-        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
-          stylesheet.rel = 'stylesheet';
-        }
-      }
-    }
-    const manageTransitions = (selector, allowTransitions) => {
-      const els = window.document.querySelectorAll(selector);
-      for (let i=0; i < els.length; i++) {
-        const el = els[i];
-        if (allowTransitions) {
-          el.classList.remove('notransition');
-        } else {
-          el.classList.add('notransition');
-        }
-      }
-    }
-    const isFileUrl = () => {
-      return window.location.protocol === 'file:';
-    }
-    const hasAlternateSentinel = () => {
-      let styleSentinel = getColorSchemeSentinel();
-      if (styleSentinel !== null) {
-        return styleSentinel === "alternate";
-      } else {
-        return false;
-      }
-    }
-    const setStyleSentinel = (alternate) => {
-      const value = alternate ? "alternate" : "default";
-      if (!isFileUrl()) {
-        window.localStorage.setItem("quarto-color-scheme", value);
-      } else {
-        localAlternateSentinel = value;
-      }
-    }
-    const getColorSchemeSentinel = () => {
-      if (!isFileUrl()) {
-        const storageValue = window.localStorage.getItem("quarto-color-scheme");
-        return storageValue != null ? storageValue : localAlternateSentinel;
-      } else {
-        return localAlternateSentinel;
-      }
-    }
-    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-      let newTheme = '';
-      if(authorPrefersDark) {
-        newTheme = isAlternate ? baseTheme : alternateTheme;
-      } else {
-        newTheme = isAlternate ? alternateTheme : baseTheme;
-      }
-      const changeGiscusTheme = () => {
-        // From: https://github.com/giscus/giscus/issues/336
-        const sendMessage = (message) => {
-          const iframe = document.querySelector('iframe.giscus-frame');
-          if (!iframe) return;
-          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-        }
-        sendMessage({
-          setConfig: {
-            theme: newTheme
-          }
+  })
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
         });
       }
-      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-      if (isGiscussLoaded) {
-        changeGiscusTheme();
-      }
-    };
-    const authorPrefersDark = false;
-    const darkModeDefault = authorPrefersDark;
-      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
-      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
-    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-    // Dark / light mode switch
-    window.quartoToggleColorScheme = () => {
-      // Read the current dark / light value
-      let toAlternate = !hasAlternateSentinel();
-      toggleColorMode(toAlternate);
-      setStyleSentinel(toAlternate);
-      toggleGiscusIfUsed(toAlternate, darkModeDefault);
-      window.dispatchEvent(new Event('resize'));
-    };
-    // Switch to dark mode if need be
-    if (hasAlternateSentinel()) {
-      toggleColorMode(true);
-    } else {
-      toggleColorMode(false);
     }
-  </script>
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">From SAS to R, and into HEOR/RWE</span>
-    </a>
-  </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <span class="navbar-toggler-icon"></span>
-</button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="../index.html"> 
-<span class="menu-text">Home</span></a>
-  </li>  
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-sas-→-r" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">SAS → R</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-sas-→-r">    
-        <li>
-    <a class="dropdown-item" href="../sas-to-r/index.html">
- <span class="dropdown-text">SAS → R</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../sas-to-r/r-fundamentals/index.html">
- <span class="dropdown-text">R Fundamentals</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../sas-to-r/dplyr-tidyverse/index.html">
- <span class="dropdown-text">dplyr &amp; tidyverse</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../sas-to-r/pharmaverse/index.html">
- <span class="dropdown-text">pharmaverse</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../sas-to-r/sas-vs-r-patterns/index.html">
- <span class="dropdown-text">SAS vs R Patterns</span></a>
-  </li>  
-    </ul>
-  </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-heor--rwe" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">HEOR &amp; RWE</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-heor--rwe">    
-        <li>
-    <a class="dropdown-item" href="../heor-rwe/index.html">
- <span class="dropdown-text">HEOR &amp; RWE</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../heor-rwe/stat-models/index.html">
- <span class="dropdown-text">Statistical Models</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../heor-rwe/methods-concepts/index.html">
- <span class="dropdown-text">Methods &amp; Concepts</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../heor-rwe/tools/index.html">
- <span class="dropdown-text">Tools &amp; Software</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../heor-rwe/resources-reviewed/index.html">
- <span class="dropdown-text">Resources Reviewed</span></a>
-  </li>  
-    </ul>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="../reference/r-cheatsheet.html"> 
-<span class="menu-text">R Reference</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../about.html"> 
-<span class="menu-text">About</span></a>
-  </li>  
-</ul>
-          </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
-</div>
-      </div> <!-- /container-fluid -->
-    </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../heor-rwe/index.html">HEOR &amp; RWE</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../heor-rwe/index.html">HEOR &amp; RWE Knowledge Base</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
     </div>
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">SAS to R</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../heor-rwe/index.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">HEOR &amp; RWE</span></a>
+  <a href="../about.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../SETUP.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Setup guide — get this site live in 30 minutes</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../heor-rwe/stat-models/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Statistical Models</span></a>
+            <a href="../heor-rwe/index.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">HEOR &amp; RWE Knowledge Base</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -367,21 +194,33 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../heor-rwe/tools/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tools &amp; Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../heor-rwe/stat-models/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Statistical Models</span></a>
   </div>
 </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
+          <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../heor-rwe/methods-concepts/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Methods &amp; Concepts</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <a href="../heor-rwe/resources-reviewed/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Resources Reviewed</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../heor-rwe/resources-reviewed/ispor-2026-experience.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">My ISPOR 2026 Experience: What I Learned &amp; Tips to Make the Most of It</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../heor-rwe/methods-concepts/index.html" class="sidebar-item-text sidebar-link">
@@ -403,8 +242,8 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../heor-rwe/tools/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tools &amp; Software</span></a>
+            <a href="../sas-to-r/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SAS → R</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -412,38 +251,56 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../heor-rwe/tools/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tools &amp; Software</span></a>
+  <a href="../sas-to-r/r-fundamentals/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R Fundamentals</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../sas-to-r/pharmaverse/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">pharmaverse</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../sas-to-r/sas-vs-r-patterns/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SAS vs R Patterns</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../sas-to-r/dplyr-tidyverse/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">dplyr &amp; tidyverse</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../sas-to-r/dplyr-tidyverse/week2-core-verbs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 2 — Core dplyr verbs</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../heor-rwe/resources-reviewed/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Resources Reviewed</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Reference</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../heor-rwe/resources-reviewed/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Resources Reviewed</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../heor-rwe/resources-reviewed/ispor-2026-experience.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">My ISPOR 2026 Experience: What I Learned &amp; Tips to Make the Most of It</span></a>
+  <a href="../reference/r-cheatsheet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R Coding Reference</span></a>
   </div>
 </li>
-      </ul>
-  </li>
       </ul>
   </li>
     </ul>
@@ -452,30 +309,14 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#what-this-track-covers" id="toc-what-this-track-covers" class="nav-link active" data-scroll-target="#what-this-track-covers">What this track covers</a></li>
-  <li><a href="#sections" id="toc-sections" class="nav-link" data-scroll-target="#sections">Sections</a>
-  <ul class="collapse">
-  <li><a href="#statistical-models" id="toc-statistical-models" class="nav-link" data-scroll-target="#statistical-models">Statistical Models</a></li>
-  <li><a href="#methods-concepts" id="toc-methods-concepts" class="nav-link" data-scroll-target="#methods-concepts">Methods &amp; Concepts</a></li>
-  <li><a href="#tools-software" id="toc-tools-software" class="nav-link" data-scroll-target="#tools-software">Tools &amp; Software</a></li>
-  <li><a href="#resources-reviewed" id="toc-resources-reviewed" class="nav-link" data-scroll-target="#resources-reviewed">Resources Reviewed</a></li>
-  </ul></li>
-  <li><a href="#current-focus" id="toc-current-focus" class="nav-link" data-scroll-target="#current-focus">Current focus</a></li>
-  </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/Priya1632/Learning-Journey/edit/main/heor-rwe/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/Priya1632/Learning-Journey/blob/main/heor-rwe/index.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
-    </div>
+        
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(4)</span></div><div class="category" data-category="Y2F1c2FsLWluZmVyZW5jZQ==">causal-inference <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bWV0aG9kcw==">methods <span class="quarto-category-count">(1)</span></div><div class="category" data-category="d2hhdC1pZg==">what-if <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">HEOR &amp; RWE</h1>
-<p class="subtitle lead">Building expertise in health economics, outcomes research, and real-world evidence</p>
+<h1 class="title">HEOR &amp; RWE Knowledge Base</h1>
 </div>
 
 
@@ -492,52 +333,115 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="what-this-track-covers" class="level2">
-<h2 class="anchored" data-anchor-id="what-this-track-covers">What this track covers</h2>
-<p>The methodological core of HEOR/RWE work — the statistical models, the causal inference frameworks, the data sources, and the software the field actually uses. My anchor project is a ZINB model comparison on MEPS utilization data, targeting ISPOR 2027.</p>
-</section>
-<section id="sections" class="level2">
-<h2 class="anchored" data-anchor-id="sections">Sections</h2>
-<section id="statistical-models" class="level3">
-<h3 class="anchored" data-anchor-id="statistical-models"><a href="../heor-rwe/stat-models/index.html">Statistical Models</a></h3>
-<p>The model families that show up constantly in HEOR/RWE: count models (Poisson, NB, ZIP, ZINB, hurdle), GLMs for cost data, survival, mixed models. Each entry walks through the model, when to use it, the R implementation, and the diagnostics.</p>
-</section>
-<section id="methods-concepts" class="level3">
-<h3 class="anchored" data-anchor-id="methods-concepts"><a href="../heor-rwe/methods-concepts/index.html">Methods &amp; Concepts</a></h3>
-<p>Causal inference, target trial emulation, propensity scores, instrumental variables, study design. The “what’s the right question” layer that sits above any specific model.</p>
-</section>
-<section id="tools-software" class="level3">
-<h3 class="anchored" data-anchor-id="tools-software"><a href="../heor-rwe/tools/index.html">Tools &amp; Software</a></h3>
-<p>The R ecosystem for HEOR/RWE: <code>pscl</code>, <code>survey</code>, <code>countreg</code>, <code>marginaleffects</code>, <code>MatchIt</code>, <code>WeightIt</code>, <code>survival</code>, <code>tidymodels</code>. Setup notes, gotchas, and when to reach for which.</p>
-</section>
-<section id="resources-reviewed" class="level3">
-<h3 class="anchored" data-anchor-id="resources-reviewed"><a href="../heor-rwe/resources-reviewed/index.html">Resources Reviewed</a></h3>
-<p>Every book, course, paper, and webinar I’ve worked through, with my one-line take and a link to a deeper summary if I wrote one.</p>
-</section>
-</section>
-<section id="current-focus" class="level2">
-<h2 class="anchored" data-anchor-id="current-focus">Current focus</h2>
-<p>Working through Hernán &amp; Robins, <em>Causal Inference: What If</em>, Part I. First detailed entry: <a href="../heor-rwe/methods-concepts/what-if-ch1-causal-questions.html">Chapter 1 — A definition of causal effect</a>.</p>
+<p>Welcome to my HEOR &amp; RWE tracking hub. Use the search bar below or the categories on the right to navigate specific methodologies.</p>
 
 
-</section>
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+
+<div class="quarto-listing quarto-listing-container-table" id="listing-listing">
+<div class="listing-actions-group">
+   <div class="input-group input-group-sm quarto-listing-sort">
+    <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
+    <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
+      <option value="" disabled="" selected="" hidden="">Order By</option>
+      <option value="index" data-direction="asc">Default</option>
+      <option value="listing-date-sort" data-direction="asc">
+        Date - Oldest
+      </option>
+      <option value="listing-date-sort" data-direction="desc">
+        Date - Newest
+      </option>
+      <option value="listing-title-sort" data-direction="asc">
+        Title
+      </option>
+      <option value="listing-author" data-direction="asc">
+        Author
+      </option>
+    </select>
+  </div>
+    <div class="input-group input-group-sm quarto-listing-filter">
+      <span class="input-group-text"><i class="bi bi-search"></i></span>
+      <input type="text" class="search form-control" placeholder="Filter">
+    </div>
+</div>
+<table class="quarto-listing-table table">
+<thead>
+<tr>
+
+<th>
+<a class="sort" data-sort="listing-date-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Date</a>
+</th>
+
+<th>
+<a class="sort" data-sort="listing-title-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Title</a>
+</th>
+
+<th>
+<a class="sort" data-sort="listing-author" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Author</a>
+</th>
+
+</tr>
+</thead>
+<tbody class="list">
+
+<tr data-index="0" data-listing-file-modified-sort="1779736201902" data-listing-reading-time-sort="1" data-listing-word-count-sort="58" data-listing-title-sort="Statistical Models" data-listing-filename-sort="index.qmd">
+<td>
+<span class="listing-date">&nbsp;</span>
+</td>
+<td>
+<a href="../heor-rwe/stat-models/index.html" class="title listing-title">Statistical Models</a>
+</td>
+<td>
+<span class="listing-author">&nbsp;</span>
+</td>
+
+</tr>
+
+<tr data-index="1" data-listing-file-modified-sort="1779736201902" data-listing-reading-time-sort="1" data-listing-word-count-sort="62" data-listing-title-sort="Methods &amp; Concepts" data-listing-filename-sort="index.qmd">
+<td>
+<span class="listing-date">&nbsp;</span>
+</td>
+<td>
+<a href="../heor-rwe/methods-concepts/index.html" class="title listing-title">Methods &amp; Concepts</a>
+</td>
+<td>
+<span class="listing-author">&nbsp;</span>
+</td>
+
+</tr>
+
+<tr data-index="2" data-listing-file-modified-sort="1779736201903" data-listing-reading-time-sort="1" data-listing-word-count-sort="54" data-listing-title-sort="Tools &amp; Software" data-listing-filename-sort="index.qmd">
+<td>
+<span class="listing-date">&nbsp;</span>
+</td>
+<td>
+<a href="../heor-rwe/tools/index.html" class="title listing-title">Tools &amp; Software</a>
+</td>
+<td>
+<span class="listing-author">&nbsp;</span>
+</td>
+
+</tr>
+
+<tr data-index="3" data-categories="Y2F1c2FsLWluZmVyZW5jZSUyQ3doYXQtaWYlMkNtZXRob2Rz" data-listing-date-sort="1777525200000" data-listing-file-modified-sort="1779736201902" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="743" data-listing-title-sort="*What If*, Ch. 1 — A definition of causal effect" data-listing-filename-sort="what-if-ch1-causal-questions.qmd">
+<td>
+<span class="listing-date">Apr 30, 2026</span>
+</td>
+<td>
+<a href="../heor-rwe/methods-concepts/what-if-ch1-causal-questions.html" class="title listing-title"><em>What If</em>, Ch. 1 — A definition of causal effect</a>
+</td>
+<td>
+<span class="listing-author">&nbsp;</span>
+</td>
+
+</tr>
+
+</tbody>
+</table>
+<div class="listing-no-matching d-none">No matching items</div>
+</div><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
-    // Ensure there is a toggle, if there isn't float one in the top right
-    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-      const a = window.document.createElement('a');
-      a.classList.add('top-right');
-      a.classList.add('quarto-color-scheme-toggle');
-      a.href = "";
-      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-      const i = window.document.createElement("i");
-      i.classList.add('bi');
-      a.appendChild(i);
-      window.document.body.appendChild(a);
-    }
-    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {
@@ -938,10 +842,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../SETUP.html" class="pagination-link" aria-label="Setup guide — get this site live in 30 minutes">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Setup guide — get this site live in 30 minutes</span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../heor-rwe/stat-models/index.html" class="pagination-link" aria-label="Statistical Models">
-        <span class="nav-page-text">Statistical Models</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../heor-rwe/tools/index.html" class="pagination-link" aria-label="Tools &amp; Software">
+        <span class="nav-page-text">Tools &amp; Software</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -953,7 +860,7 @@ ul.task-list li input[type="checkbox"] {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Priya1632/Learning-Journey/edit/main/heor-rwe/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/Priya1632/Learning-Journey/blob/main/heor-rwe/index.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div>
+    <div class="toc-actions"><ul><li><a href="https://github.com/Priya1632/Learning-Journey/edit/main/heor-rwe/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/Priya1632/Learning-Journey/blob/main/heor-rwe/index.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">
@@ -976,5 +883,4 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

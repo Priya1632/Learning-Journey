@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>From SAS to R, and into HEOR/RWE</title>
+<title>From SAS to R, and into HEOR/RWE – Priya Bodduluri</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -33,22 +33,24 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-listing/list.min.js"></script>
+<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-de63f62b328812d8e578a4d74e282472.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-45431c2918bd31147ddb3fa7038bb99f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-61fcfb564202351f62555a117430d0da.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
-  "location": "sidebar",
+  "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
-  "panel-placement": "start",
-  "type": "textbox",
+  "panel-placement": "end",
+  "type": "overlay",
   "limit": 50,
   "keyboard-shortcut": [
     "f",
@@ -70,31 +72,135 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script>
 
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-recent-posts .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
 
-<link rel="stylesheet" href="styles.css">
+    const options = {
+      valueNames: ['listing-date','listing-title','listing-subtitle','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-date","listing-title","listing-author","listing-subtitle","listing-image","listing-description"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-recent-posts'] = new List('listing-recent-posts', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="assets/styles.css">
 </head>
 
-<body class="fullcontent quarto-light">
+<body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Priya Bodduluri</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="./index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./posts.html"> 
+<span class="menu-text">All Posts</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/Priya1632/Learning-Journey"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/priya-bodduluri/"> <i class="bi bi-linkedin" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content column-page" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">From SAS to R, and into HEOR/RWE</h1>
-<p class="subtitle lead">A working biostatistician’s applied learning journal</p>
+<p class="subtitle lead">A biostatistician’s applied learning journal</p>
 </div>
 
 
 
-<div class="quarto-title-meta">
+<div class="quarto-title-meta column-page">
 
     
   
@@ -106,48 +212,63 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<div class="lead">
+<p>I’m a clinical biostatistician (PharmD, MPH) documenting my transition from SAS into R fluency and HEOR/RWE methodology. This is where I write what I’m learning — applied, honest, and in my own words.</p>
 </div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>This is a <strong>living learning journal</strong>, not a textbook. Entries reflect what I’m working through right now — concepts I’m wrestling with, code I’m writing, resources I’m reading, and the takeaways I want my future self to remember. Some entries are polished, some are rough. That’s the point.</p>
-</div>
-</div>
-<section id="why-this-exists" class="level2">
-<h2 class="anchored" data-anchor-id="why-this-exists">Why this exists</h2>
-<p>I’m a clinical biostatistician (PharmD, MPH) currently programming primarily in SAS, transitioning toward R fluency and HEOR/RWE methodology. This site is where I document that transition — partly as a personal reference, partly so anyone walking a similar path has something to follow along with.</p>
-<p>The format is <strong>applied and project-based</strong>. Every entry tries to answer: what is this concept, why does it matter, what does the code look like, what resources helped me, and what do I want to remember next time?</p>
-</section>
-<section id="the-two-tracks" class="level2">
-<h2 class="anchored" data-anchor-id="the-two-tracks">The two tracks</h2>
+<hr>
+<section id="what-i-write-about" class="level2">
+<h2 class="anchored" data-anchor-id="what-i-write-about">What I write about</h2>
 <div class="grid">
-<section id="sas-r" class="level3 g-col-6">
-<h3 class="anchored" data-anchor-id="sas-r"><a href="./sas-to-r/index.html">SAS → R</a></h3>
-<p>Becoming proficient in R as a working biostatistician. R fundamentals, the tidyverse, pharmaverse (admiral, xportr, tfrmt, metacore), and side-by-side translations of SAS patterns I use every day.</p>
+<section id="sas-r" class="level4 g-col-12 g-col-md-6">
+<h4 class="anchored" data-anchor-id="sas-r">📘 SAS → R</h4>
+<p>R fundamentals, tidyverse, pharmaverse, and side-by-side translations of SAS patterns I use every day.</p>
 </section>
-<section id="heor-rwe" class="level3 g-col-6">
-<h3 class="anchored" data-anchor-id="heor-rwe"><a href="./heor-rwe/index.html">HEOR &amp; RWE</a></h3>
-<p>Building expertise in health economics and outcomes research and real-world evidence. Statistical models (ZINB, GLMs, survival), causal inference, study design, and the tools and data sources used in the field.</p>
+<section id="heor-rwe" class="level4 g-col-12 g-col-md-6">
+<h4 class="anchored" data-anchor-id="heor-rwe">🔬 HEOR &amp; RWE</h4>
+<p>Causal inference, statistical models, study design, data sources, and tools used in real-world evidence.</p>
 </section>
 </div>
+<hr>
 </section>
-<section id="quick-links" class="level2">
-<h2 class="anchored" data-anchor-id="quick-links">Quick links</h2>
-<ul>
-<li><a href="./reference/r-cheatsheet.html">R coding reference</a> — the running cheat sheet I wish I’d had on day one</li>
-<li><a href="./heor-rwe/resources-reviewed/index.html">Resources reviewed</a> — every book, course, and paper, with my one-line take</li>
-<li><a href="./about.html">About</a></li>
-</ul>
-</section>
-<section id="how-to-use-this-site" class="level2">
-<h2 class="anchored" data-anchor-id="how-to-use-this-site">How to use this site</h2>
-<p>If you’re following along: pick a track and start at its index page. Entries are dated and roughly chronological within each section. If you spot something wrong, the <strong>Edit this page</strong> link in the right sidebar takes you straight to the source on GitHub.</p>
+<section id="recent-posts" class="level2">
+<h2 class="anchored" data-anchor-id="recent-posts">Recent posts</h2>
+<div id="listing-recent-posts" class="quarto-listing quarto-listing-container-default">
+<div class="list quarto-listing-default">
+<div class="quarto-post image-right" data-index="0" data-categories="SVNQT1IlMkNjb25mZXJlbmNlcyUyQ0hFT1IlMkNuZXR3b3JraW5nJTJDY2FyZWVyLXRyYW5zaXRpb24=" data-listing-date-sort="1779685200000" data-listing-file-modified-sort="1780109661000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="515">
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/ispor-2026/index.html" class="no-external">My First ISPOR: What Nobody Tells You Before You Go</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/ispor-2026/index.html" class="no-external">Honest field notes from ISPOR 2026 — tips, sessions, and what I’d do differently</a>
+</div>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('SVNQT1I='); return false;">ISPOR</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Y29uZmVyZW5jZXM='); return false;">conferences</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('SEVPUg=='); return false;">HEOR</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('bmV0d29ya2luZw=='); return false;">networking</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Y2FyZWVyLXRyYW5zaXRpb24='); return false;">career-transition</div>
+
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/ispor-2026/index.html" class="no-external">
+<div class="listing-date">
+May 25, 2026
+</div>
+</a>
+</div>
+</div>
+</div>
+<div class="listing-no-matching d-none">No matching items</div>
+</div>
+<p><a href="./posts.html">View all posts →</a></p>
+
 
 
 </section>
@@ -240,6 +361,11 @@ Note
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
         }
       }
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
@@ -557,26 +683,13 @@ Note
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>© 2026 · A learning journal in progress.</p>
-</div>   
-    <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/Priya1632/Learning-Journey/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/Priya1632/Learning-Journey/blob/main/index.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div>
+    </div>   
+    <div class="nav-footer-center">
+<p>© 2026 Priya Bodduluri · A learning journal in progress</p>
+<div class="toc-actions"><ul><li><a href="https://github.com/Priya1632/Learning-Journey/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/Priya1632/Learning-Journey/blob/main/index.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div>
     <div class="nav-footer-right">
-      <ul class="footer-items list-unstyled">
-    <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/Priya1632/Learning-Journey">
-      <i class="bi bi-github" role="img">
-</i> 
-    </a>
-  </li>  
-    <li class="nav-item compact">
-    <a class="nav-link" href="https://www.linkedin.com/in/priya-bodduluri/">
-      <i class="bi bi-linkedin" role="img">
-</i> 
-    </a>
-  </li>  
-</ul>
+      &nbsp;
     </div>
   </div>
 </footer>
@@ -584,4 +697,5 @@ Note
 
 
 
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

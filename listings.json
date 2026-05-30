@@ -1,17 +1,14 @@
 [
   {
-    "listing": "/heor-rwe/index.html",
+    "listing": "/posts.html",
     "items": [
-      "/heor-rwe/stat-models/index.html",
-      "/heor-rwe/methods-concepts/index.html",
-      "/heor-rwe/tools/index.html",
-      "/heor-rwe/methods-concepts/what-if-ch1-causal-questions.html"
+      "/posts/ispor-2026/index.html"
     ]
   },
   {
-    "listing": "/heor-rwe/resources-reviewed/index.html",
+    "listing": "/index.html",
     "items": [
-      "/heor-rwe/resources-reviewed/ispor-2026-experience.html"
+      "/posts/ispor-2026/index.html"
     ]
   }
 ]

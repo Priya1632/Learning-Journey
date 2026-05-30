@@ -1,731 +1,86 @@
 [
   {
-    "objectID": "reference/r-cheatsheet.html",
-    "href": "reference/r-cheatsheet.html",
-    "title": "R Coding Reference",
+    "objectID": "posts.html",
+    "href": "posts.html",
+    "title": "All Posts",
     "section": "",
-    "text": "A living reference. Things go here when I learn them and want to find them fast later. Not exhaustive, opinionated about what’s useful for biostat / HEOR work.",
-    "crumbs": [
-      "Reference",
-      "R Coding Reference"
-    ]
-  },
-  {
-    "objectID": "reference/r-cheatsheet.html#the-non-negotiables",
-    "href": "reference/r-cheatsheet.html#the-non-negotiables",
-    "title": "R Coding Reference",
-    "section": "The non-negotiables",
-    "text": "The non-negotiables\n\nR is case-sensitive. Always. Filter ≠ filter. df ≠ DF.\nAssignment uses &lt;- by convention, though = works in most places. Inside function calls, = means “named argument,” not “assign.”\n== is equality, = is assignment-in-arguments. Mixing them is a classic SAS-programmer bug.\nVectors are 1-indexed, not 0. x[1] is the first element.\nNA is contagious. Most arithmetic with NA returns NA. Use na.rm = TRUE in summary functions, or sum(is.na(x)) to count missings.",
-    "crumbs": [
-      "Reference",
-      "R Coding Reference"
-    ]
-  },
-  {
-    "objectID": "reference/r-cheatsheet.html#pipes",
-    "href": "reference/r-cheatsheet.html#pipes",
-    "title": "R Coding Reference",
-    "section": "Pipes",
-    "text": "Pipes\n\n|&gt; is the base R pipe (R 4.1+). Prefer it for new code.\n%&gt;% is the magrittr pipe. Almost identical. Some edge cases differ — %&gt;% supports . placeholder, |&gt; supports _ placeholder (with named args only) starting R 4.2.",
-    "crumbs": [
-      "Reference",
-      "R Coding Reference"
-    ]
-  },
-  {
-    "objectID": "reference/r-cheatsheet.html#functions-vs.-macros-the-sas-programmers-mental-shift",
-    "href": "reference/r-cheatsheet.html#functions-vs.-macros-the-sas-programmers-mental-shift",
-    "title": "R Coding Reference",
-    "section": "Functions vs. macros (the SAS programmer’s mental shift)",
-    "text": "Functions vs. macros (the SAS programmer’s mental shift)\n\nFunctions in R are first-class objects. You can pass them as arguments, store them in lists, return them from other functions. SAS macros are text substitution; R functions are real values.\nDefault arguments in functions: f &lt;- function(x, n = 10) .... The n = 10 is the default if not supplied.\nThe ... (dots) argument captures additional arguments to pass to inner functions. Used heavily in tidyverse and for plotting.",
-    "crumbs": [
-      "Reference",
-      "R Coding Reference"
-    ]
-  },
-  {
-    "objectID": "reference/r-cheatsheet.html#common-gotchas",
-    "href": "reference/r-cheatsheet.html#common-gotchas",
-    "title": "R Coding Reference",
-    "section": "Common gotchas",
-    "text": "Common gotchas\n\nFunction name conflicts. Loading dplyr masks stats::filter() and stats::lag(). Loading MASS masks dplyr::select(). When in doubt, prefix: dplyr::filter(). The conflicted package makes this explicit and is worth using.\ndata.frame vs tibble vs data.table. All three are tabular. Tibbles print nicer and don’t do silent type coercion. data.table is fast but a different syntax. For tidyverse work, tibbles. For huge data, data.table or arrow.\nFactors. read.csv used to make strings into factors silently. Modern R (4.0+) doesn’t. readr::read_csv and data.table::fread never did. Factors are still useful — just don’t get them by accident.\nsapply is a foot-gun. It tries to simplify the output and can return a vector, matrix, or list depending on inputs. Use vapply (type-safe) or purrr::map_* (explicit return type) instead.",
-    "crumbs": [
-      "Reference",
-      "R Coding Reference"
-    ]
-  },
-  {
-    "objectID": "reference/r-cheatsheet.html#useful-idioms",
-    "href": "reference/r-cheatsheet.html#useful-idioms",
-    "title": "R Coding Reference",
-    "section": "Useful idioms",
-    "text": "Useful idioms\n\n# Read everything as character to avoid type surprises, then convert deliberately\nreadr::read_csv(\"file.csv\", col_types = readr::cols(.default = \"c\"))\n\n# \"Fill down\" missing values (very common in pivoted data)\ntidyr::fill(df, col_name, .direction = \"down\")\n\n# Per-group operation without group_by/ungroup ceremony (dplyr 1.1+)\ndf |&gt; mutate(rank = row_number(), .by = subject_id)\n\n# Anti-join: rows in x not in y by key\ndplyr::anti_join(x, y, by = \"id\")\n\n# String interpolation\nglue::glue(\"Subject {usubjid} had Cmax = {round(cmax, 2)}\")",
-    "crumbs": [
-      "Reference",
-      "R Coding Reference"
-    ]
-  },
-  {
-    "objectID": "reference/r-cheatsheet.html#project-setup",
-    "href": "reference/r-cheatsheet.html#project-setup",
-    "title": "R Coding Reference",
-    "section": "Project setup",
-    "text": "Project setup\n\nAlways use an RStudio Project (.Rproj file). Sets the working directory automatically — no more setwd().\nhere::here() for paths. Resolves from the project root, not from wherever the script happens to be running.\nrenv for project-level package management. Like a requirements.txt for R. Essential for reproducible analyses.\ntargets for analysis pipelines. The make-equivalent for R; reruns only what changed. Worth learning for any multi-step project.",
-    "crumbs": [
-      "Reference",
-      "R Coding Reference"
-    ]
-  },
-  {
-    "objectID": "reference/r-cheatsheet.html#table-1-regulatory-output",
-    "href": "reference/r-cheatsheet.html#table-1-regulatory-output",
-    "title": "R Coding Reference",
-    "section": "Table 1 / regulatory output",
-    "text": "Table 1 / regulatory output\n\ngtsummary::tbl_summary() — the fastest path to a publication-ready Table 1.\ngt — the underlying table package; full control.\ntfrmt (pharmaverse) — for regulatory-compliant tables matching SAS-style specs.",
-    "crumbs": [
-      "Reference",
-      "R Coding Reference"
-    ]
-  },
-  {
-    "objectID": "reference/r-cheatsheet.html#modeling",
-    "href": "reference/r-cheatsheet.html#modeling",
-    "title": "R Coding Reference",
-    "section": "Modeling",
-    "text": "Modeling\n\nbroom::tidy() turns any model object into a tidy data frame of coefficients. broom::glance() for model-level stats. broom::augment() for fitted/residual values.\nmarginaleffects is the right way to get adjusted predictions, marginal effects, and contrasts from any model. Replaces emmeans for most use cases I care about.\nAlways check confint() — base R confidence intervals on coefficients are profile likelihood by default for GLMs, Wald for lm. Specify if you care.",
-    "crumbs": [
-      "Reference",
-      "R Coding Reference"
-    ]
-  },
-  {
-    "objectID": "reference/r-cheatsheet.html#things-i-keep-relearning",
-    "href": "reference/r-cheatsheet.html#things-i-keep-relearning",
-    "title": "R Coding Reference",
-    "section": "Things I keep relearning",
-    "text": "Things I keep relearning\nI’ll add to this list as I keep tripping on things.\n\nThe default contrasts for unordered factors are treatment contrasts (dummy coding). For ordered factors, polynomial. Set options(contrasts = c(\"contr.treatment\", \"contr.treatment\")) if you want consistent behavior.\nseq(1, 10, by = 2) not seq(1, 10, 2) — positional args work but named is clearer.\npaste() defaults to space separator; paste0() defaults to no separator. Use paste0 for filenames and identifiers.",
-    "crumbs": [
-      "Reference",
-      "R Coding Reference"
-    ]
+    "text": "My First ISPOR: What Nobody Tells You Before You Go\n\n\nHonest field notes from ISPOR 2026 — tips, sessions, and what I’d do differently\n\n\n\nISPOR\n\nconferences\n\nHEOR\n\nnetworking\n\ncareer-transition\n\n\n\nI attended my first ISPOR in Philadelphia. Here’s what I learned, what surprised me, and what I’d tell anyone going for the first time.\n\n\n\n\n\nMay 25, 2026\n\n\n\n\n\nNo matching items\n Back to top"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "From SAS to R, and into HEOR/RWE",
     "section": "",
-    "text": "Note\n\n\n\nThis is a living learning journal, not a textbook. Entries reflect what I’m working through right now — concepts I’m wrestling with, code I’m writing, resources I’m reading, and the takeaways I want my future self to remember. Some entries are polished, some are rough. That’s the point."
+    "text": "I’m a clinical biostatistician (PharmD, MPH) documenting my transition from SAS into R fluency and HEOR/RWE methodology. This is where I write what I’m learning — applied, honest, and in my own words."
   },
   {
-    "objectID": "index.html#why-this-exists",
-    "href": "index.html#why-this-exists",
+    "objectID": "index.html#what-i-write-about",
+    "href": "index.html#what-i-write-about",
     "title": "From SAS to R, and into HEOR/RWE",
-    "section": "Why this exists",
-    "text": "Why this exists\nI’m a clinical biostatistician (PharmD, MPH) currently programming primarily in SAS, transitioning toward R fluency and HEOR/RWE methodology. This site is where I document that transition — partly as a personal reference, partly so anyone walking a similar path has something to follow along with.\nThe format is applied and project-based. Every entry tries to answer: what is this concept, why does it matter, what does the code look like, what resources helped me, and what do I want to remember next time?"
+    "section": "What I write about",
+    "text": "What I write about\n\n\n📘 SAS → R\nR fundamentals, tidyverse, pharmaverse, and side-by-side translations of SAS patterns I use every day.\n\n\n🔬 HEOR & RWE\nCausal inference, statistical models, study design, data sources, and tools used in real-world evidence."
   },
   {
-    "objectID": "index.html#the-two-tracks",
-    "href": "index.html#the-two-tracks",
+    "objectID": "index.html#recent-posts",
+    "href": "index.html#recent-posts",
     "title": "From SAS to R, and into HEOR/RWE",
-    "section": "The two tracks",
-    "text": "The two tracks\n\n\nSAS → R\nBecoming proficient in R as a working biostatistician. R fundamentals, the tidyverse, pharmaverse (admiral, xportr, tfrmt, metacore), and side-by-side translations of SAS patterns I use every day.\n\n\nHEOR & RWE\nBuilding expertise in health economics and outcomes research and real-world evidence. Statistical models (ZINB, GLMs, survival), causal inference, study design, and the tools and data sources used in the field."
+    "section": "Recent posts",
+    "text": "Recent posts\n\n\n\n\n\nMy First ISPOR: What Nobody Tells You Before You Go\n\n\nHonest field notes from ISPOR 2026 — tips, sessions, and what I’d do differently\n\n\n\nISPOR\n\nconferences\n\nHEOR\n\nnetworking\n\ncareer-transition\n\n\n\n\n\n\nMay 25, 2026\n\n\n\n\n\nNo matching items\n\nView all posts →"
   },
   {
-    "objectID": "index.html#quick-links",
-    "href": "index.html#quick-links",
-    "title": "From SAS to R, and into HEOR/RWE",
-    "section": "Quick links",
-    "text": "Quick links\n\nR coding reference — the running cheat sheet I wish I’d had on day one\nResources reviewed — every book, course, and paper, with my one-line take\nAbout"
-  },
-  {
-    "objectID": "index.html#how-to-use-this-site",
-    "href": "index.html#how-to-use-this-site",
-    "title": "From SAS to R, and into HEOR/RWE",
-    "section": "How to use this site",
-    "text": "How to use this site\nIf you’re following along: pick a track and start at its index page. Entries are dated and roughly chronological within each section. If you spot something wrong, the Edit this page link in the right sidebar takes you straight to the source on GitHub."
-  },
-  {
-    "objectID": "sas-to-r/dplyr-tidyverse/index.html",
-    "href": "sas-to-r/dplyr-tidyverse/index.html",
-    "title": "dplyr & tidyverse",
+    "objectID": "posts/ispor-2026/index.html",
+    "href": "posts/ispor-2026/index.html",
+    "title": "My First ISPOR: What Nobody Tells You Before You Go",
     "section": "",
-    "text": "The grammar of data manipulation in R. Coming from SAS, this is the section that does the most work — proc sql and data steps map onto dplyr in mostly clean ways, but the mental model is different enough to be worth writing down.",
-    "crumbs": [
-      "SAS → R",
-      "dplyr & tidyverse"
-    ]
+    "text": "I attended my first ISPOR 2026 conference in Philadelphia. I enrolled in two short courses and attended one main conference day. It was a lot, in the best way. Here’s what I took away and what I’d tell anyone heading there next time."
   },
   {
-    "objectID": "sas-to-r/dplyr-tidyverse/index.html#entries",
-    "href": "sas-to-r/dplyr-tidyverse/index.html#entries",
-    "title": "dplyr & tidyverse",
-    "section": "Entries",
-    "text": "Entries\n\nWeek 2 — Core dplyr verbs\n\nMore entries as I progress through the 26-week plan.",
-    "crumbs": [
-      "SAS → R",
-      "dplyr & tidyverse"
-    ]
-  },
-  {
-    "objectID": "sas-to-r/sas-vs-r-patterns/index.html",
-    "href": "sas-to-r/sas-vs-r-patterns/index.html",
-    "title": "SAS vs R Patterns",
-    "section": "",
-    "text": "Side-by-side translations of patterns I use every day in SAS, written in R. The point isn’t to argue one is better — it’s to make the mental jump faster when I’m in R and reaching for a SAS habit.\nPlanned entries: proc sort + first./last. → dplyr::group_by + slice, proc transpose → pivot_wider/pivot_longer, retain statements → cumsum/accumulate, merge logic, macro variables → functions and glue.\n\n\n\n Back to top",
-    "crumbs": [
-      "SAS → R",
-      "SAS vs R Patterns"
-    ]
-  },
-  {
-    "objectID": "sas-to-r/r-fundamentals/index.html",
-    "href": "sas-to-r/r-fundamentals/index.html",
-    "title": "R Fundamentals",
-    "section": "",
-    "text": "The conceptual groundwork — the things that aren’t really about doing analysis but about understanding why R behaves the way it does. Entries here will cover data types, vectors vs. lists, factors, environments, NSE, and the SAS-programmer’s “wait, what?” moments.\nEntries will be added here as I work through them. Check back, or follow the repo.\n\n\n\n Back to top",
-    "crumbs": [
-      "SAS → R",
-      "R Fundamentals"
-    ]
-  },
-  {
-    "objectID": "heor-rwe/methods-concepts/what-if-ch1-causal-questions.html",
-    "href": "heor-rwe/methods-concepts/what-if-ch1-causal-questions.html",
-    "title": "What If, Ch. 1 — A definition of causal effect",
-    "section": "",
-    "text": "Note\n\n\n\nSource: Hernán MA, Robins JM. Causal Inference: What If. Boca Raton: Chapman & Hall/CRC, 2020. Free PDF.\nThe summary below is in my own words — what I took away, why it matters to me as a biostatistician moving toward HEOR/RWE. For the actual material, read the book.",
-    "crumbs": [
-      "HEOR & RWE Knowledge Base",
-      "Methods & Concepts",
-      "*What If*, Ch. 1 — A definition of causal effect"
-    ]
-  },
-  {
-    "objectID": "heor-rwe/methods-concepts/what-if-ch1-causal-questions.html#concept",
-    "href": "heor-rwe/methods-concepts/what-if-ch1-causal-questions.html#concept",
-    "title": "What If, Ch. 1 — A definition of causal effect",
-    "section": "Concept",
-    "text": "Concept\nA causal effect, defined cleanly, is a contrast between two potential outcomes for the same unit under different treatments. For an individual, the causal effect of treatment \\(A\\) on outcome \\(Y\\) is \\(Y^{a=1} - Y^{a=0}\\) — the difference between what would happen if treated and what would happen if untreated. The fundamental problem of causal inference is that we only ever observe one of these two potential outcomes for each individual. The other is counterfactual.\nBecause individual causal effects are unidentifiable, causal inference operates at the average level: \\(E[Y^{a=1}] - E[Y^{a=0}]\\). We swap the impossible (knowing what would have happened to person \\(i\\)) for the merely difficult (estimating averages over groups under untestable assumptions).",
-    "crumbs": [
-      "HEOR & RWE Knowledge Base",
-      "Methods & Concepts",
-      "*What If*, Ch. 1 — A definition of causal effect"
-    ]
-  },
-  {
-    "objectID": "heor-rwe/methods-concepts/what-if-ch1-causal-questions.html#why-it-matters",
-    "href": "heor-rwe/methods-concepts/what-if-ch1-causal-questions.html#why-it-matters",
-    "title": "What If, Ch. 1 — A definition of causal effect",
-    "section": "Why it matters",
-    "text": "Why it matters\nThis chapter is the conceptual fork in the road. Once you accept that:\n\nCausation is defined in terms of counterfactuals, not just associations,\nWe can never observe both potential outcomes for the same person,\nSo everything we do in causal inference is built on assumptions that license us to use observed data to estimate averages of unobserved counterfactuals —\n\n…then everything else in the book (and in HEOR/RWE practice) makes sense as machinery for making that swap defensible. Propensity scores, IPTW, target trial emulation, IV — they’re all answers to the question: given that I can’t observe counterfactuals, under what assumptions can I still get \\(E[Y^{a=1}] - E[Y^{a=0}]\\) from data I do have?\nFor my work specifically: this is the lens I need to bring to RWE. A regression with covariates is not a causal analysis just because it controls for things. It becomes one when I can write down the counterfactual contrast it estimates and the assumptions under which my estimator equals that contrast.",
-    "crumbs": [
-      "HEOR & RWE Knowledge Base",
-      "Methods & Concepts",
-      "*What If*, Ch. 1 — A definition of causal effect"
-    ]
-  },
-  {
-    "objectID": "heor-rwe/methods-concepts/what-if-ch1-causal-questions.html#my-summary-key-concepts-that-helped-me-understand",
-    "href": "heor-rwe/methods-concepts/what-if-ch1-causal-questions.html#my-summary-key-concepts-that-helped-me-understand",
-    "title": "What If, Ch. 1 — A definition of causal effect",
-    "section": "My summary — key concepts that helped me understand",
-    "text": "My summary — key concepts that helped me understand\n\nPotential outcomes notation \\(Y^a\\). \\(Y^{a=1}\\) is the outcome a person would have under treatment; \\(Y^{a=0}\\) is the outcome the same person would have under no treatment. These are properties of the person, not of the data. Most of them are unobserved by definition.\nIndividual causal effect = \\(Y^{a=1} - Y^{a=0}\\). Defined for a person. Almost never identifiable. The point of writing it down isn’t to estimate it — it’s to be precise about what you’d want to estimate in a perfect world.\nAverage causal effect = \\(E[Y^{a=1}] - E[Y^{a=0}]\\). This is the population-level quantity we can estimate, given assumptions. It’s not just “the average of individual effects” in any practically useful sense — it’s the contrast of two whole-population means under counterfactual treatment regimes.\nCausation ≠ Association. \\(E[Y \\mid A=1] - E[Y \\mid A=0]\\) (an associational contrast) is not the same as \\(E[Y^{a=1}] - E[Y^{a=0}]\\) (a causal contrast). They’re equal only under conditions like exchangeability, which randomization buys you and observational data does not.\nThree measures of effect show up: risk difference, risk ratio, odds ratio. Different scales, different uses. For HEOR work where I’ll be reporting to decision-makers, the risk difference / absolute scale is usually the most communicative; multiplicative measures collapse base-rate information.\nSharp vs. average null hypotheses. “Treatment had no effect on anyone” (sharp null) is much stronger than “average effect is zero.” A non-zero average can hide huge heterogeneity, and a zero average can hide opposite-direction effects in subgroups. This matters for HTE work.",
-    "crumbs": [
-      "HEOR & RWE Knowledge Base",
-      "Methods & Concepts",
-      "*What If*, Ch. 1 — A definition of causal effect"
-    ]
-  },
-  {
-    "objectID": "heor-rwe/methods-concepts/what-if-ch1-causal-questions.html#things-to-remember",
-    "href": "heor-rwe/methods-concepts/what-if-ch1-causal-questions.html#things-to-remember",
-    "title": "What If, Ch. 1 — A definition of causal effect",
-    "section": "Things to remember",
-    "text": "Things to remember\n\nWhenever I hear “the effect of \\(A\\) on \\(Y\\),” I should mentally translate to: “the contrast \\(E[Y^{a=1}] - E[Y^{a=0}]\\), under what assumptions, in what population.” If I can’t fill those blanks in, the claim isn’t well-defined yet.\nA causal claim from observational data is a claim about counterfactuals plus a defense of the assumptions that license bridging from observed to counterfactual. The defense is the analysis. The model is just the bookkeeping.\n“Confounding” in this framework is precisely the failure of exchangeability: \\(Y^a \\not\\!\\perp\\!\\!\\!\\perp A\\). That’s a much sharper definition than the usual “a third variable that distorts the relationship.”",
-    "crumbs": [
-      "HEOR & RWE Knowledge Base",
-      "Methods & Concepts",
-      "*What If*, Ch. 1 — A definition of causal effect"
-    ]
-  },
-  {
-    "objectID": "heor-rwe/methods-concepts/what-if-ch1-causal-questions.html#code",
-    "href": "heor-rwe/methods-concepts/what-if-ch1-causal-questions.html#code",
-    "title": "What If, Ch. 1 — A definition of causal effect",
-    "section": "Code",
-    "text": "Code\nNo code in this chapter — it’s foundational. Code starts showing up around Chapter 11 (IP weighting) and 12 (g-formula). I’ll write up those entries as I get there, with R implementations using survey, WeightIt, and marginaleffects.",
-    "crumbs": [
-      "HEOR & RWE Knowledge Base",
-      "Methods & Concepts",
-      "*What If*, Ch. 1 — A definition of causal effect"
-    ]
-  },
-  {
-    "objectID": "heor-rwe/methods-concepts/what-if-ch1-causal-questions.html#status",
-    "href": "heor-rwe/methods-concepts/what-if-ch1-causal-questions.html#status",
-    "title": "What If, Ch. 1 — A definition of causal effect",
-    "section": "Status",
-    "text": "Status\nRead. Re-read introduction and 1.4 (effect measures). Moving to Chapter 2 (randomized experiments) next.",
-    "crumbs": [
-      "HEOR & RWE Knowledge Base",
-      "Methods & Concepts",
-      "*What If*, Ch. 1 — A definition of causal effect"
-    ]
-  },
-  {
-    "objectID": "heor-rwe/methods-concepts/what-if-ch1-causal-questions.html#cross-references",
-    "href": "heor-rwe/methods-concepts/what-if-ch1-causal-questions.html#cross-references",
-    "title": "What If, Ch. 1 — A definition of causal effect",
-    "section": "Cross-references",
-    "text": "Cross-references\n\nResources Reviewed: entry for What If",
-    "crumbs": [
-      "HEOR & RWE Knowledge Base",
-      "Methods & Concepts",
-      "*What If*, Ch. 1 — A definition of causal effect"
-    ]
-  },
-  {
-    "objectID": "heor-rwe/index.html",
-    "href": "heor-rwe/index.html",
-    "title": "HEOR & RWE Knowledge Base",
-    "section": "",
-    "text": "Welcome to my HEOR & RWE tracking hub. Use the search bar below or the categories on the right to navigate specific methodologies.\n\n\n\n\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n      \n        Author\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\n\nTitle\n\n\n\nAuthor\n\n\n\n\n\n\n\n\n \n\n\nStatistical Models\n\n\n \n\n\n\n\n\n\n \n\n\nMethods & Concepts\n\n\n \n\n\n\n\n\n\n \n\n\nTools & Software\n\n\n \n\n\n\n\n\n\nApr 30, 2026\n\n\nWhat If, Ch. 1 — A definition of causal effect\n\n\n \n\n\n\n\n\n\nNo matching items\n Back to top",
-    "crumbs": [
-      "HEOR & RWE Knowledge Base"
-    ]
-  },
-  {
-    "objectID": "heor-rwe/resources-reviewed/index.html",
-    "href": "heor-rwe/resources-reviewed/index.html",
-    "title": "Resources Reviewed",
-    "section": "",
-    "text": "Every book, course, paper, webinar, and conference I’ve worked through. Organized by date — newest first.\n\n\n\n\n\n\n\n\n\nMy ISPOR 2026 Experience: What I Learned & Tips to Make the Most of It\n\n\n\n\n\n\nHEOR\n\nRWE\n\nConference\n\nCareer\n\n\n\nAttended ISPOR 2026 in Philadelphia. Here’s what I took away and what I’d tell anyone heading there next time.\n\n\n\n\n\nMay 28, 2026\n\n\n\n\n\nNo matching items\n Back to top",
-    "crumbs": [
-      "HEOR & RWE Knowledge Base",
-      "Resources Reviewed"
-    ]
-  },
-  {
-    "objectID": "SETUP.html",
-    "href": "SETUP.html",
-    "title": "Setup guide — get this site live in 30 minutes",
-    "section": "",
-    "text": "Step-by-step from “files on disk” to “public site at github.io.” Assumes you have a GitHub account and a working terminal.\n\n\nDownload from https://quarto.org/docs/get-started/ for your OS. Verify:\nquarto --version\nYou don’t need R installed for the site to render as it’s currently set up — all R chunks have eval: false. You only need R if you want code chunks to actually run during render. (For now, leaving them un-evaluated is fine and faster.)\n\n\n\n\nGo to https://github.com/new.\nName it learning-journey (or whatever you want — just be consistent).\nPublic. Don’t initialize with README, license, or .gitignore — we already have those.\nCreate repo. Copy the SSH or HTTPS URL.\n\n\n\n\nFrom inside the learning-journey/ folder I generated:\ngit init\ngit add .\ngit commit -m \"Initial scaffold\"\ngit branch -M main\ngit remote add origin git@github.com:YOURUSERNAME/learning-journey.git\ngit push -u origin main\n\n\n\nFind-and-replace YOURUSERNAME with your actual GitHub username in:\n\n_quarto.yml (site-url, repo-url, footer)\nindex.qmd (no change needed, but check)\nabout.qmd\nREADME.md\n\nSame for YOURPROFILE in the LinkedIn footer link.\nCommit and push these.\n\n\n\n\nOn GitHub, go to your repo → Settings → Pages.\nUnder Build and deployment, set Source to GitHub Actions.\nThat’s it — the workflow in .github/workflows/publish.yml will fire on your next push.\n\n\n\n\nEither push a small change, or go to Actions tab → Publish Quarto site → Run workflow.\nAfter 1–2 minutes, your site will be live at:\nhttps://YOURUSERNAME.github.io/learning-journey/\n\n\n\nEdit .qmd files in your editor. Preview locally:\nquarto preview\nThis opens a live-reloading browser tab. Edit, save, see changes immediately. When you’re happy:\ngit add .\ngit commit -m \"Add entry: propensity score matching\"\ngit push\nGitHub Actions does the rest. Site updates in ~2 minutes.\n\n\n\ncp _entry-template.qmd heor-rwe/methods-concepts/propensity-score-matching.qmd\n# edit it\n# add it to heor-rwe/methods-concepts/index.qmd's listing\n# (optionally) add it to _quarto.yml sidebar\ngit add . && git commit -m \"Add: PS matching entry\" && git push\n\n\n\n\nCustom domain later — once you have ~20 entries, point a domain like priya-stats.com at the GitHub Pages site. Settings → Pages → Custom domain.\nAnalytics — add a Plausible or umami snippet to _quarto.yml under format.html.include-in-header if you eventually want to see traffic.\nRSS feed — Quarto can generate one for any listing page. Useful when you start sharing.\nSearch is already enabled in the navbar config — it indexes everything automatically.\n\n\n\n\nFor the first 4–6 weeks:\n\nSite is public and indexable. ✅\nDon’t link it from LinkedIn yet. ✅\nAim for one new entry per week, plus updates to the R cheatsheet whenever you learn something.\nBuild a small backlog (8–10 entries) before any active promotion.\nFirst share moment: after R/Pharma submission, or when you have a Resources Reviewed page that’s actually got reviews on it.\n\nBy the time you announce, there’s substance. Until then, it’s quietly accumulating credibility.",
-    "crumbs": [
-      "Setup guide — get this site live in 30 minutes"
-    ]
-  },
-  {
-    "objectID": "SETUP.html#install-quarto",
-    "href": "SETUP.html#install-quarto",
-    "title": "Setup guide — get this site live in 30 minutes",
-    "section": "",
-    "text": "Download from https://quarto.org/docs/get-started/ for your OS. Verify:\nquarto --version\nYou don’t need R installed for the site to render as it’s currently set up — all R chunks have eval: false. You only need R if you want code chunks to actually run during render. (For now, leaving them un-evaluated is fine and faster.)",
-    "crumbs": [
-      "Setup guide — get this site live in 30 minutes"
-    ]
-  },
-  {
-    "objectID": "SETUP.html#create-the-github-repo",
-    "href": "SETUP.html#create-the-github-repo",
-    "title": "Setup guide — get this site live in 30 minutes",
-    "section": "",
-    "text": "Go to https://github.com/new.\nName it learning-journey (or whatever you want — just be consistent).\nPublic. Don’t initialize with README, license, or .gitignore — we already have those.\nCreate repo. Copy the SSH or HTTPS URL.",
-    "crumbs": [
-      "Setup guide — get this site live in 30 minutes"
-    ]
-  },
-  {
-    "objectID": "SETUP.html#push-the-scaffold",
-    "href": "SETUP.html#push-the-scaffold",
-    "title": "Setup guide — get this site live in 30 minutes",
-    "section": "",
-    "text": "From inside the learning-journey/ folder I generated:\ngit init\ngit add .\ngit commit -m \"Initial scaffold\"\ngit branch -M main\ngit remote add origin git@github.com:YOURUSERNAME/learning-journey.git\ngit push -u origin main",
-    "crumbs": [
-      "Setup guide — get this site live in 30 minutes"
-    ]
-  },
-  {
-    "objectID": "SETUP.html#update-placeholder-urls",
-    "href": "SETUP.html#update-placeholder-urls",
-    "title": "Setup guide — get this site live in 30 minutes",
-    "section": "",
-    "text": "Find-and-replace YOURUSERNAME with your actual GitHub username in:\n\n_quarto.yml (site-url, repo-url, footer)\nindex.qmd (no change needed, but check)\nabout.qmd\nREADME.md\n\nSame for YOURPROFILE in the LinkedIn footer link.\nCommit and push these.",
-    "crumbs": [
-      "Setup guide — get this site live in 30 minutes"
-    ]
-  },
-  {
-    "objectID": "SETUP.html#enable-github-pages",
-    "href": "SETUP.html#enable-github-pages",
-    "title": "Setup guide — get this site live in 30 minutes",
-    "section": "",
-    "text": "On GitHub, go to your repo → Settings → Pages.\nUnder Build and deployment, set Source to GitHub Actions.\nThat’s it — the workflow in .github/workflows/publish.yml will fire on your next push.",
-    "crumbs": [
-      "Setup guide — get this site live in 30 minutes"
-    ]
-  },
-  {
-    "objectID": "SETUP.html#trigger-a-build",
-    "href": "SETUP.html#trigger-a-build",
-    "title": "Setup guide — get this site live in 30 minutes",
-    "section": "",
-    "text": "Either push a small change, or go to Actions tab → Publish Quarto site → Run workflow.\nAfter 1–2 minutes, your site will be live at:\nhttps://YOURUSERNAME.github.io/learning-journey/",
-    "crumbs": [
-      "Setup guide — get this site live in 30 minutes"
-    ]
-  },
-  {
-    "objectID": "SETUP.html#local-workflow-from-here",
-    "href": "SETUP.html#local-workflow-from-here",
-    "title": "Setup guide — get this site live in 30 minutes",
-    "section": "",
-    "text": "Edit .qmd files in your editor. Preview locally:\nquarto preview\nThis opens a live-reloading browser tab. Edit, save, see changes immediately. When you’re happy:\ngit add .\ngit commit -m \"Add entry: propensity score matching\"\ngit push\nGitHub Actions does the rest. Site updates in ~2 minutes.",
-    "crumbs": [
-      "Setup guide — get this site live in 30 minutes"
-    ]
-  },
-  {
-    "objectID": "SETUP.html#adding-a-new-entry",
-    "href": "SETUP.html#adding-a-new-entry",
-    "title": "Setup guide — get this site live in 30 minutes",
-    "section": "",
-    "text": "cp _entry-template.qmd heor-rwe/methods-concepts/propensity-score-matching.qmd\n# edit it\n# add it to heor-rwe/methods-concepts/index.qmd's listing\n# (optionally) add it to _quarto.yml sidebar\ngit add . && git commit -m \"Add: PS matching entry\" && git push",
-    "crumbs": [
-      "Setup guide — get this site live in 30 minutes"
-    ]
-  },
-  {
-    "objectID": "SETUP.html#optional-but-recommended",
-    "href": "SETUP.html#optional-but-recommended",
-    "title": "Setup guide — get this site live in 30 minutes",
-    "section": "",
-    "text": "Custom domain later — once you have ~20 entries, point a domain like priya-stats.com at the GitHub Pages site. Settings → Pages → Custom domain.\nAnalytics — add a Plausible or umami snippet to _quarto.yml under format.html.include-in-header if you eventually want to see traffic.\nRSS feed — Quarto can generate one for any listing page. Useful when you start sharing.\nSearch is already enabled in the navbar config — it indexes everything automatically.",
-    "crumbs": [
-      "Setup guide — get this site live in 30 minutes"
-    ]
-  },
-  {
-    "objectID": "SETUP.html#the-public-but-quiet-plan",
-    "href": "SETUP.html#the-public-but-quiet-plan",
-    "title": "Setup guide — get this site live in 30 minutes",
-    "section": "",
-    "text": "For the first 4–6 weeks:\n\nSite is public and indexable. ✅\nDon’t link it from LinkedIn yet. ✅\nAim for one new entry per week, plus updates to the R cheatsheet whenever you learn something.\nBuild a small backlog (8–10 entries) before any active promotion.\nFirst share moment: after R/Pharma submission, or when you have a Resources Reviewed page that’s actually got reviews on it.\n\nBy the time you announce, there’s substance. Until then, it’s quietly accumulating credibility.",
-    "crumbs": [
-      "Setup guide — get this site live in 30 minutes"
-    ]
-  },
-  {
-    "objectID": "heor-rwe/tools/index.html",
-    "href": "heor-rwe/tools/index.html",
-    "title": "Tools & Software",
-    "section": "",
-    "text": "The R ecosystem for HEOR/RWE work. Setup notes, what each package is for, and the gotchas I hit.\nPlanned coverage: pscl (zero-inflated/hurdle models), countreg (count model diagnostics), survey (complex survey designs — essential for MEPS), marginaleffects (post-estimation, the way), MatchIt and WeightIt (PS methods), survival and survminer, cmprsk (competing risks), data sources (MEPS, CPRD, SEER-Medicare).\n\n\n\n Back to top",
-    "crumbs": [
-      "HEOR & RWE Knowledge Base",
-      "Tools & Software"
-    ]
-  },
-  {
-    "objectID": "heor-rwe/resources-reviewed/ispor-2026-experience.html",
-    "href": "heor-rwe/resources-reviewed/ispor-2026-experience.html",
-    "title": "My ISPOR 2026 Experience: What I Learned & Tips to Make the Most of It",
-    "section": "",
-    "text": "I attended my first ISPOR 2026 conference in Philadelphia. I enrolled in two short courses and attended one main conference day. It was a lot, in the best way. Here’s what I took away and what I’d tell anyone heading there next time.",
-    "crumbs": [
-      "HEOR & RWE Knowledge Base",
-      "Resources Reviewed",
-      "My ISPOR 2026 Experience: What I Learned & Tips to Make the Most of It"
-    ]
-  },
-  {
-    "objectID": "heor-rwe/resources-reviewed/ispor-2026-experience.html#go-in-with-a-clear-goal",
-    "href": "heor-rwe/resources-reviewed/ispor-2026-experience.html#go-in-with-a-clear-goal",
-    "title": "My ISPOR 2026 Experience: What I Learned & Tips to Make the Most of It",
+    "objectID": "posts/ispor-2026/index.html#go-in-with-a-clear-goal",
+    "href": "posts/ispor-2026/index.html#go-in-with-a-clear-goal",
+    "title": "My First ISPOR: What Nobody Tells You Before You Go",
     "section": "Go in with a clear goal",
-    "text": "Go in with a clear goal\nISPOR is massive. Without a goal, it’s easy to wander. Before you go, identify the area you want to grow in, whether that’s real-world evidence, comparative effectiveness, causal inference, whatever it is. That focus shapes everything: which sessions you attend, which booths you visit, which conversations you seek out.\nFor me, I’m actively building toward HEOR and RWE, so I chose my short courses around that. I attended:\n\nCausal Inference and Causal Diagrams in Big, Real-World Observational Data and Pragmatic Trials\nDeveloping Decision-Grade Real-World Evidence\n\nBoth aligned directly with where I want to grow and being in a room full of people working on the same problems made it immediately clear who I wanted to talk to. That’s the point. Your goal doesn’t have to be complicated, just intentional.",
-    "crumbs": [
-      "HEOR & RWE Knowledge Base",
-      "Resources Reviewed",
-      "My ISPOR 2026 Experience: What I Learned & Tips to Make the Most of It"
-    ]
+    "text": "Go in with a clear goal\nISPOR is massive. Without a goal, it’s easy to wander. Before you go, identify the area you want to grow in — real-world evidence, comparative effectiveness, causal inference, whatever it is. That focus shapes everything: which sessions you attend, which booths you visit, which conversations you seek out.\nFor me, I’m actively building toward HEOR and RWE, so I chose my short courses around that:\n\nCausal Inference and Causal Diagrams in Big, Real-World Observational Data and Pragmatic Trials\nDeveloping Decision-Grade Real-World Evidence\n\nBoth aligned directly with where I want to grow. Being in a room full of people working on the same problems made it immediately clear who I wanted to talk to. Your goal doesn’t have to be complicated — just intentional."
   },
   {
-    "objectID": "heor-rwe/resources-reviewed/ispor-2026-experience.html#network-intentionally-not-aggressively",
-    "href": "heor-rwe/resources-reviewed/ispor-2026-experience.html#network-intentionally-not-aggressively",
-    "title": "My ISPOR 2026 Experience: What I Learned & Tips to Make the Most of It",
+    "objectID": "posts/ispor-2026/index.html#network-intentionally-not-aggressively",
+    "href": "posts/ispor-2026/index.html#network-intentionally-not-aggressively",
+    "title": "My First ISPOR: What Nobody Tells You Before You Go",
     "section": "Network intentionally, not aggressively",
-    "text": "Network intentionally, not aggressively\nSet a realistic target — 3 to 5 genuine conversations. Not just LinkedIn connections. Conversations.\nPoster sessions are underrated for this. Find research that interests you, walk up, ask the presenter about their work. People love talking about their research. Ask if they’re open to collaboration. Connect on LinkedIn. That’s it.\nIf you’re interested in a specific area, say, comparative effectiveness — browse the poster presentations beforehand, find what genuinely fascinates you, and make a plan to talk to those presenters. It’s a natural, low-pressure way to start a real conversation.\nIf you’re interested in a company, visit their booth, ideally in the morning before it gets crowded. Ask for methodology folks if you want to understand their tools and approach. Ask for HR if you’re exploring opportunities. Be direct, be friendly.",
-    "crumbs": [
-      "HEOR & RWE Knowledge Base",
-      "Resources Reviewed",
-      "My ISPOR 2026 Experience: What I Learned & Tips to Make the Most of It"
-    ]
+    "text": "Network intentionally, not aggressively\nSet a realistic target — 3 to 5 genuine conversations. Not just LinkedIn connections. Conversations.\nPoster sessions are underrated for this. Find research that interests you, walk up, ask the presenter about their work. People love talking about their research. Connect on LinkedIn while you’re still standing there.\nIf you’re interested in a specific company, visit their booth — ideally in the morning before it gets crowded. Ask for methodology folks if you want to understand their approach. Ask for HR if you’re exploring opportunities. Be direct, be friendly."
   },
   {
-    "objectID": "heor-rwe/resources-reviewed/ispor-2026-experience.html#plan-before-you-arrive",
-    "href": "heor-rwe/resources-reviewed/ispor-2026-experience.html#plan-before-you-arrive",
-    "title": "My ISPOR 2026 Experience: What I Learned & Tips to Make the Most of It",
+    "objectID": "posts/ispor-2026/index.html#plan-before-you-arrive",
+    "href": "posts/ispor-2026/index.html#plan-before-you-arrive",
+    "title": "My First ISPOR: What Nobody Tells You Before You Go",
     "section": "Plan before you arrive",
-    "text": "Plan before you arrive\nDownload the ISPOR app — it’s genuinely useful. Before the conference:\n\nFinalize your short courses and plenary sessions\nBrowse the attendee list and flag interesting profiles\nReview the exhibitor list and make a priority ordered list of booths to visit\n\nKeep only your planned sessions in the app so you’re not distracted scrolling through everything else.",
-    "crumbs": [
-      "HEOR & RWE Knowledge Base",
-      "Resources Reviewed",
-      "My ISPOR 2026 Experience: What I Learned & Tips to Make the Most of It"
-    ]
+    "text": "Plan before you arrive\nDownload the ISPOR app — it’s genuinely useful. Before the conference:\n\nFinalize your short courses and plenary sessions\nBrowse the attendee list and flag interesting profiles\nReview the exhibitor list and make a priority list of booths to visit\n\nKeep only your planned sessions in the app so you’re not distracted scrolling through everything else."
   },
   {
-    "objectID": "heor-rwe/resources-reviewed/ispor-2026-experience.html#use-your-in-person-time-wisely",
-    "href": "heor-rwe/resources-reviewed/ispor-2026-experience.html#use-your-in-person-time-wisely",
-    "title": "My ISPOR 2026 Experience: What I Learned & Tips to Make the Most of It",
+    "objectID": "posts/ispor-2026/index.html#use-your-in-person-time-wisely",
+    "href": "posts/ispor-2026/index.html#use-your-in-person-time-wisely",
+    "title": "My First ISPOR: What Nobody Tells You Before You Go",
     "section": "Use your in-person time wisely",
-    "text": "Use your in-person time wisely\nMost sessions are recorded. Your competitive advantage at the conference is being there hands-on workshops, live debates, poster conversations, hallway chats. Prioritize the things that don’t translate to a recording.",
-    "crumbs": [
-      "HEOR & RWE Knowledge Base",
-      "Resources Reviewed",
-      "My ISPOR 2026 Experience: What I Learned & Tips to Make the Most of It"
-    ]
+    "text": "Use your in-person time wisely\nMost sessions are recorded. Your competitive advantage at the conference is being there — hands-on workshops, live debates, poster conversations, hallway chats. Prioritize the things that don’t translate to a recording."
   },
   {
-    "objectID": "heor-rwe/resources-reviewed/ispor-2026-experience.html#practical-stuff-that-actually-matters",
-    "href": "heor-rwe/resources-reviewed/ispor-2026-experience.html#practical-stuff-that-actually-matters",
-    "title": "My ISPOR 2026 Experience: What I Learned & Tips to Make the Most of It",
-    "section": "Practical stuff that actually matters",
-    "text": "Practical stuff that actually matters\n\nWear comfortable shoes. Seriously. The walking is brutal.\nBring protein bars and water. You’ll thank yourself.\nDon’t overdo it. One focused day beats three burned-out ones.\nTalk to people. Even just a hi. Everyone is approachable. You never know where a conversation leads.\n\n\nHopefully this helps. Keep it simple, planned, and focused - that’s what worked for me. :)",
-    "crumbs": [
-      "HEOR & RWE Knowledge Base",
-      "Resources Reviewed",
-      "My ISPOR 2026 Experience: What I Learned & Tips to Make the Most of It"
-    ]
+    "objectID": "posts/ispor-2026/index.html#practical-things-that-actually-matter",
+    "href": "posts/ispor-2026/index.html#practical-things-that-actually-matter",
+    "title": "My First ISPOR: What Nobody Tells You Before You Go",
+    "section": "Practical things that actually matter",
+    "text": "Practical things that actually matter\n\nWear comfortable shoes. Seriously. The walking is brutal.\nBring protein bars and water. You’ll thank yourself.\nDon’t overdo it. One focused day beats three burned-out ones.\nTalk to people. Everyone is approachable. You never know where a conversation leads.\nWrite notes immediately. By evening of day two you’ll barely remember day one."
   },
   {
-    "objectID": "heor-rwe/methods-concepts/index.html",
-    "href": "heor-rwe/methods-concepts/index.html",
-    "title": "Methods & Concepts",
-    "section": "",
-    "text": "The conceptual layer above the models — how to ask the right causal question, how to design a study, how to think about confounding and identification before reaching for an estimator.",
-    "crumbs": [
-      "HEOR & RWE Knowledge Base",
-      "Methods & Concepts"
-    ]
-  },
-  {
-    "objectID": "heor-rwe/methods-concepts/index.html#entries",
-    "href": "heor-rwe/methods-concepts/index.html#entries",
-    "title": "Methods & Concepts",
-    "section": "Entries",
-    "text": "Entries\n\nWhat If, Ch. 1 — A definition of causal effect\n\nPlanned: target trial emulation, propensity scores (matching vs. weighting vs. stratification), IV methods, regression discontinuity, sensitivity analysis (E-values), study designs in RWE.",
-    "crumbs": [
-      "HEOR & RWE Knowledge Base",
-      "Methods & Concepts"
-    ]
-  },
-  {
-    "objectID": "heor-rwe/stat-models/index.html",
-    "href": "heor-rwe/stat-models/index.html",
-    "title": "Statistical Models",
-    "section": "",
-    "text": "Model families I’m building working knowledge of for HEOR/RWE. Each entry follows the same structure: the model, the assumptions, when to use it, R code, diagnostics, and what tripped me up.\nPlanned: Poisson regression, negative binomial, zero-inflated Poisson, ZINB (the anchor project model), hurdle models, GLMs for cost (gamma, log-link), Cox PH refresher in R, mixed models with lme4.\n\n\n\n Back to top",
-    "crumbs": [
-      "HEOR & RWE Knowledge Base",
-      "Statistical Models"
-    ]
-  },
-  {
-    "objectID": "sas-to-r/pharmaverse/index.html",
-    "href": "sas-to-r/pharmaverse/index.html",
-    "title": "pharmaverse",
-    "section": "",
-    "text": "The R packages built specifically for clinical trial work: admiral (ADaM datasets), xportr (XPT v5 transport files), metacore/metatools (specs and metadata), tfrmt (tables), pharmaversesdtm (test data). This is the stack that makes R viable for regulated submissions.\nEntries to come as I incorporate these into real ADaM work.\n\n\n\n Back to top",
-    "crumbs": [
-      "SAS → R",
-      "pharmaverse"
-    ]
-  },
-  {
-    "objectID": "sas-to-r/index.html",
-    "href": "sas-to-r/index.html",
-    "title": "SAS → R",
-    "section": "",
-    "text": "I program in SAS daily. R is where the field is moving — pharmaverse, tidyverse, regulatory submissions, and HEOR work all increasingly happen in R. This track is the applied path from “I can read R” to “I’d reach for R first.”",
-    "crumbs": [
-      "SAS → R"
-    ]
-  },
-  {
-    "objectID": "sas-to-r/index.html#what-this-track-covers",
-    "href": "sas-to-r/index.html#what-this-track-covers",
-    "title": "SAS → R",
-    "section": "",
-    "text": "I program in SAS daily. R is where the field is moving — pharmaverse, tidyverse, regulatory submissions, and HEOR work all increasingly happen in R. This track is the applied path from “I can read R” to “I’d reach for R first.”",
-    "crumbs": [
-      "SAS → R"
-    ]
-  },
-  {
-    "objectID": "sas-to-r/index.html#sections",
-    "href": "sas-to-r/index.html#sections",
-    "title": "SAS → R",
-    "section": "Sections",
-    "text": "Sections\n\nR Fundamentals\nData types, environments, scoping, the things that trip up SAS programmers when they first hit R. The “why does this work this way” entries.\n\n\ndplyr & tidyverse\nThe core data manipulation grammar. Most of my Week 2–8 R plan lives here — verbs, joins, pivots, list-columns.\n\n\npharmaverse\nThe clinical R stack: admiral for ADaM, xportr for transport files, metacore for specs, tfrmt for tables. This is where R earns its place against SAS in regulated work.\n\n\nSAS vs R patterns\nSide-by-side translations of patterns I use constantly: proc sort + first. / last., proc transpose, retain, merge logic, macro variables. Aimed at SAS programmers — including future me.",
-    "crumbs": [
-      "SAS → R"
-    ]
-  },
-  {
-    "objectID": "sas-to-r/index.html#current-focus",
-    "href": "sas-to-r/index.html#current-focus",
-    "title": "SAS → R",
-    "section": "Current focus",
-    "text": "Current focus\nWeek 2 of my 26-week plan: dplyr core verbs (select, filter, mutate, arrange, summarize, group_by).",
-    "crumbs": [
-      "SAS → R"
-    ]
-  },
-  {
-    "objectID": "sas-to-r/dplyr-tidyverse/week2-core-verbs.html",
-    "href": "sas-to-r/dplyr-tidyverse/week2-core-verbs.html",
-    "title": "Week 2 — Core dplyr verbs",
-    "section": "",
-    "text": "dplyr gives you a small set of “verbs” that each do one thing to a data frame and return a data frame. The point is that any data manipulation, no matter how complicated, decomposes into a chain of these verbs piped together with |&gt; (or %&gt;%). That’s the whole grammar.\nThe six core verbs:\n\n\n\n\n\n\n\n\nVerb\nWhat it does\nSAS analog\n\n\n\n\nselect()\nPick columns\nkeep / drop in a data step; select in proc sql\n\n\nfilter()\nPick rows by condition\nwhere clause; if statement\n\n\narrange()\nSort rows\nproc sort\n\n\nmutate()\nAdd or change columns\nassignment in a data step\n\n\nsummarize()\nCollapse rows to summary stats\nproc means / proc summary\n\n\ngroup_by()\nSet the grouping for later verbs\nby statement",
-    "crumbs": [
-      "SAS → R",
-      "dplyr & tidyverse",
-      "Week 2 — Core dplyr verbs"
-    ]
-  },
-  {
-    "objectID": "sas-to-r/dplyr-tidyverse/week2-core-verbs.html#concept",
-    "href": "sas-to-r/dplyr-tidyverse/week2-core-verbs.html#concept",
-    "title": "Week 2 — Core dplyr verbs",
-    "section": "",
-    "text": "dplyr gives you a small set of “verbs” that each do one thing to a data frame and return a data frame. The point is that any data manipulation, no matter how complicated, decomposes into a chain of these verbs piped together with |&gt; (or %&gt;%). That’s the whole grammar.\nThe six core verbs:\n\n\n\n\n\n\n\n\nVerb\nWhat it does\nSAS analog\n\n\n\n\nselect()\nPick columns\nkeep / drop in a data step; select in proc sql\n\n\nfilter()\nPick rows by condition\nwhere clause; if statement\n\n\narrange()\nSort rows\nproc sort\n\n\nmutate()\nAdd or change columns\nassignment in a data step\n\n\nsummarize()\nCollapse rows to summary stats\nproc means / proc summary\n\n\ngroup_by()\nSet the grouping for later verbs\nby statement",
-    "crumbs": [
-      "SAS → R",
-      "dplyr & tidyverse",
-      "Week 2 — Core dplyr verbs"
-    ]
-  },
-  {
-    "objectID": "sas-to-r/dplyr-tidyverse/week2-core-verbs.html#why-it-matters",
-    "href": "sas-to-r/dplyr-tidyverse/week2-core-verbs.html#why-it-matters",
-    "title": "Week 2 — Core dplyr verbs",
-    "section": "Why it matters",
-    "text": "Why it matters\nIn SAS, “manipulating data” usually means writing a data step or a proc sql. The mental model is procedural: read each row, do something, output. In dplyr, the model is transformational: take a table, return a table. Once you internalize that, complex pipelines stop feeling like programming and start feeling like writing.\nFor ADaM work specifically, this matters because most ADaM derivations are exactly this shape — take SDTM, filter, join, derive, summarize. admiral is built on dplyr.",
-    "crumbs": [
-      "SAS → R",
-      "dplyr & tidyverse",
-      "Week 2 — Core dplyr verbs"
-    ]
-  },
-  {
-    "objectID": "sas-to-r/dplyr-tidyverse/week2-core-verbs.html#code-a-worked-example",
-    "href": "sas-to-r/dplyr-tidyverse/week2-core-verbs.html#code-a-worked-example",
-    "title": "Week 2 — Core dplyr verbs",
-    "section": "Code: a worked example",
-    "text": "Code: a worked example\n\nlibrary(dplyr)\n\n# A tiny PK-shaped dataset\nadpc &lt;- tibble::tribble(\n  ~USUBJID,    ~AVISIT,    ~ATPT,     ~AVAL,\n  \"001\",       \"Cycle 1\",  \"Pre-dose\", 0.0,\n  \"001\",       \"Cycle 1\",  \"1 hr\",     12.4,\n  \"001\",       \"Cycle 1\",  \"4 hr\",     8.1,\n  \"002\",       \"Cycle 1\",  \"Pre-dose\", 0.0,\n  \"002\",       \"Cycle 1\",  \"1 hr\",     14.7,\n  \"002\",       \"Cycle 1\",  \"4 hr\",     9.3\n)\n\n# Cmax per subject per visit\nadpc |&gt;\n  filter(ATPT != \"Pre-dose\") |&gt;\n  group_by(USUBJID, AVISIT) |&gt;\n  summarize(CMAX = max(AVAL), .groups = \"drop\") |&gt;\n  arrange(USUBJID, AVISIT)\n\nThe pipe |&gt; reads left-to-right: take adpc, then drop pre-dose rows, then group by subject and visit, then collapse to the max, then sort. Each step is a verb. The whole pipeline is one expression.",
-    "crumbs": [
-      "SAS → R",
-      "dplyr & tidyverse",
-      "Week 2 — Core dplyr verbs"
-    ]
-  },
-  {
-    "objectID": "sas-to-r/dplyr-tidyverse/week2-core-verbs.html#resources-used",
-    "href": "sas-to-r/dplyr-tidyverse/week2-core-verbs.html#resources-used",
-    "title": "Week 2 — Core dplyr verbs",
-    "section": "Resources used",
-    "text": "Resources used\n\nR for Data Science (2e), Wickham, Çetinkaya-Rundel, Grolemund — Chapters 3–5 (free online). The canonical introduction.\ndplyr cheatsheet from Posit (PDF). Print it. Tape it up.\nvignette(\"dplyr\") — the package’s own intro, runs in the console.",
-    "crumbs": [
-      "SAS → R",
-      "dplyr & tidyverse",
-      "Week 2 — Core dplyr verbs"
-    ]
-  },
-  {
-    "objectID": "sas-to-r/dplyr-tidyverse/week2-core-verbs.html#my-summary-the-things-i-want-to-remember",
-    "href": "sas-to-r/dplyr-tidyverse/week2-core-verbs.html#my-summary-the-things-i-want-to-remember",
-    "title": "Week 2 — Core dplyr verbs",
-    "section": "My summary — the things I want to remember",
-    "text": "My summary — the things I want to remember\n\nPipes pass the left side as the first argument. x |&gt; f(y) is f(x, y). Almost all dplyr verbs take the data frame as the first argument because of the pipe.\ngroup_by() is sticky. Once a tibble is grouped, every subsequent verb respects the grouping until you ungroup() or use .groups = \"drop\" in summarize(). Forgetting this causes hours of confused debugging.\nsummarize() collapses, mutate() doesn’t. If you want a per-group statistic added back as a column without collapsing, use mutate() after group_by(), not summarize().\nselect() can rename in place: select(adpc, subject = USUBJID). Faster than calling rename() separately.\nfilter() drops NA silently when the condition involves an NA-producing comparison. If you want to keep NAs, use filter(is.na(x) | x &gt; 0).\nThe .by argument in dplyr 1.1+ lets you do per-call grouping without group_by() + ungroup(): summarize(adpc, CMAX = max(AVAL), .by = c(USUBJID, AVISIT)). Cleaner for one-off aggregations.",
-    "crumbs": [
-      "SAS → R",
-      "dplyr & tidyverse",
-      "Week 2 — Core dplyr verbs"
-    ]
-  },
-  {
-    "objectID": "sas-to-r/dplyr-tidyverse/week2-core-verbs.html#gotchas-things-to-remember-for-coding-in-r",
-    "href": "sas-to-r/dplyr-tidyverse/week2-core-verbs.html#gotchas-things-to-remember-for-coding-in-r",
-    "title": "Week 2 — Core dplyr verbs",
-    "section": "Gotchas / things to remember for coding in R",
-    "text": "Gotchas / things to remember for coding in R\n\n\n\n\n\n\nWarning\n\n\n\nR is case-sensitive. Filter is not filter. USUBJID is not usubjid. SAS forgives case in variable names by default — R never does.\n\n\n\ndplyr::filter() is masked by stats::filter() (a time-series function loaded by default). If you ever get bizarre errors from filter(), prefix it as dplyr::filter() to be sure.\nsummarise() and summarize() are both valid — Wickham gave us both spellings. Pick one and stick with it.\nn() only works inside dplyr verbs. It’s not a base R function. nrow(x) is the equivalent for the whole tibble.\nStrings: dplyr uses bare column names (NSE), but values are quoted strings. filter(adpc, AVISIT == \"Cycle 1\") — the column is bare, the comparison value is in quotes.\n== for equality, not =. = is assignment-in-an-argument and will not error the way you’d hope; it’ll just behave weirdly.\nThe pipe |&gt; is base R (4.1+); %&gt;% is from magrittr/dplyr. They’re almost identical but not quite. For new code, prefer |&gt;.",
-    "crumbs": [
-      "SAS → R",
-      "dplyr & tidyverse",
-      "Week 2 — Core dplyr verbs"
-    ]
-  },
-  {
-    "objectID": "sas-to-r/dplyr-tidyverse/week2-core-verbs.html#status",
-    "href": "sas-to-r/dplyr-tidyverse/week2-core-verbs.html#status",
-    "title": "Week 2 — Core dplyr verbs",
-    "section": "Status",
-    "text": "Status\nIn progress. Next: pivots (pivot_longer/pivot_wider) and joins.",
-    "crumbs": [
-      "SAS → R",
-      "dplyr & tidyverse",
-      "Week 2 — Core dplyr verbs"
-    ]
+    "objectID": "posts/ispor-2026/index.html#what-im-taking-back",
+    "href": "posts/ispor-2026/index.html#what-im-taking-back",
+    "title": "My First ISPOR: What Nobody Tells You Before You Go",
+    "section": "What I’m taking back",
+    "text": "What I’m taking back\n\nThe field is smaller than it looks. The same names appear on posters, in session chairs, in the hallways. Worth knowing who the key practitioners are early.\nMethods I’m studying in isolation feel more grounded now — I can picture the context they’re used in.\nISPOR is not a methods conference. If you go expecting deep statistical methodology talks, you’ll be frustrated. What’s debated is which methods, when, and what the results mean for decision-making. That’s a different mode of thinking.\n\n\n\n\n\n\n\nTip\n\n\n\nIf you’re transitioning from clinical trials into HEOR/RWE: Go to ISPOR before you feel ready. The exposure to the full evidence-to-decision pipeline is worth more than you expect."
   },
   {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "I’m a clinical biostatistician with a PharmD and MPH (biostatistics/epidemiology). I work in oncology, dermatology, urology, and other therapeutic areas — primarily in SAS — and I’m transitioning toward HEOR/RWE methodology with R as my main tool.",
-    "crumbs": [
-      "About"
-    ]
-  },
-  {
-    "objectID": "about.html#who-i-am",
-    "href": "about.html#who-i-am",
-    "title": "About",
-    "section": "",
-    "text": "I’m a clinical biostatistician with a PharmD and MPH (biostatistics/epidemiology). I work in oncology, dermatology, urology, and other therapeutic areas — primarily in SAS — and I’m transitioning toward HEOR/RWE methodology with R as my main tool.",
-    "crumbs": [
-      "About"
-    ]
-  },
-  {
-    "objectID": "about.html#what-im-working-toward",
-    "href": "about.html#what-im-working-toward",
-    "title": "About",
-    "section": "What I’m working toward",
-    "text": "What I’m working toward\n\nShort term: R proficiency for clinical and HEOR work; an applied portfolio project (ZINB model comparison on MEPS utilization data).\nMedium term: A talk at R/Pharma; a submission to ISPOR; transition into an HEOR/RWE-focused role.\nLong term: Senior expertise in real-world evidence methodology.",
-    "crumbs": [
-      "About"
-    ]
-  },
-  {
-    "objectID": "about.html#why-im-publishing-this",
-    "href": "about.html#why-im-publishing-this",
-    "title": "About",
-    "section": "Why I’m publishing this",
-    "text": "Why I’m publishing this\nThree reasons. First, writing forces clarity — if I can’t explain a concept, I don’t really understand it. Second, future me will forget things, and a searchable reference saves hours. Third, the path from clinical SAS programming into HEOR/RWE isn’t well-documented for people in my position, and I want what I learn to be useful to the next person.",
-    "crumbs": [
-      "About"
-    ]
-  },
-  {
-    "objectID": "about.html#how-to-reach-me",
-    "href": "about.html#how-to-reach-me",
-    "title": "About",
-    "section": "How to reach me",
-    "text": "How to reach me\nGitHub issues on the repo are the best place for corrections or suggestions. For longer conversations, LinkedIn.",
-    "crumbs": [
-      "About"
-    ]
+    "text": "I’m Priya Bodduluri — a clinical biostatistician with a PharmD and MPH, currently transitioning from SAS programming into R fluency and HEOR/RWE methodology.\nMy background is in clinical trials and real-world database research, including experience with CPRD. This site is where I document what I’m learning — partly as a personal reference, partly for anyone walking a similar path.\nWhat I’m building toward: a career at the intersection of real-world evidence, causal inference, and health economics.\n\n\nConnect\n\nLinkedIn\nGitHub\n\n\n\n\n\n Back to top"
   }
 ]

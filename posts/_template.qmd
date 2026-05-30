@@ -1,0 +1,44 @@
+---
+title: "Your post title"
+subtitle: "One line on what this is really about"
+date: 2026-01-01
+categories: [tag1, tag2]
+description: "Two sentences shown in the post listing. What is this about and why does it matter."
+---
+
+## Concept
+
+What is this, in plain language? Write it as if explaining to a colleague over coffee.
+
+## Why it matters
+
+Why does this earn space in your head? Tie it to something concrete.
+
+## Key takeaways
+
+- **Concept name.** One or two sentences in your own words.
+- **Another concept.** Same pattern.
+- Keep to 3–7 bullets.
+
+## Code example
+
+```{r}
+#| eval: false
+
+# A small example showing the concept in action
+
+```
+
+## Resources
+
+- [Link](#) — one sentence on what it is and how you used it.
+
+## Gotchas
+
+::: {.callout-warning}
+The thing you most want future-you to know before touching this again.
+:::
+
+## Status
+
+In progress / Done / Applied to [project].

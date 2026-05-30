@@ -1,7 +1,0 @@
----
-title: "pharmaverse"
----
-
-The R packages built specifically for clinical trial work: `admiral` (ADaM datasets), `xportr` (XPT v5 transport files), `metacore`/`metatools` (specs and metadata), `tfrmt` (tables), `pharmaversesdtm` (test data). This is the stack that makes R viable for regulated submissions.
-
-*Entries to come as I incorporate these into real ADaM work.*

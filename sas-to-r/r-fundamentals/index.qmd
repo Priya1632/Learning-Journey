@@ -1,7 +1,0 @@
----
-title: "R Fundamentals"
----
-
-The conceptual groundwork — the things that aren't really about *doing* analysis but about understanding why R behaves the way it does. Entries here will cover data types, vectors vs. lists, factors, environments, NSE, and the SAS-programmer's "wait, what?" moments.
-
-*Entries will be added here as I work through them. Check back, or follow the repo.*

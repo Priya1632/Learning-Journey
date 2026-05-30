@@ -3,20 +3,15 @@ title: "About"
 toc: false
 ---
 
-## Who I am
+I'm ShivaPriya Bodduluri — a clinical biostatistician with a PharmD and MPH, currently transitioning from SAS programming into R fluency and HEOR/RWE methodology.
 
-I'm a clinical biostatistician with a PharmD and MPH (biostatistics/epidemiology). I work in oncology, dermatology, urology, and other therapeutic areas — primarily in SAS — and I'm transitioning toward HEOR/RWE methodology with R as my main tool.
+My background is in clinical trials and real-world database research, including experience with CPRD. This site is where I document what I'm learning — partly as a personal reference, partly for anyone walking a similar path.
 
-## What I'm working toward
+**What I'm building toward:** a career at the intersection of real-world evidence, causal inference, and health economics.
 
-- **Short term:** R proficiency for clinical and HEOR work; an applied portfolio project (ZINB model comparison on MEPS utilization data).
-- **Medium term:** A talk at R/Pharma; a submission to ISPOR; transition into an HEOR/RWE-focused role.
-- **Long term:** Senior expertise in real-world evidence methodology.
+---
 
-## Why I'm publishing this
+### Connect
 
-Three reasons. First, writing forces clarity — if I can't explain a concept, I don't really understand it. Second, future me will forget things, and a searchable reference saves hours. Third, the path from clinical SAS programming into HEOR/RWE isn't well-documented for people in my position, and I want what I learn to be useful to the next person.
-
-## How to reach me
-
-GitHub issues on the [repo](https://github.com/Priya1632/Learning-Journey.git) are the best place for corrections or suggestions. For longer conversations, LinkedIn.
+- [LinkedIn](https://www.linkedin.com/in/priya-bodduluri/)
+- [GitHub](https://github.com/Priya1632)

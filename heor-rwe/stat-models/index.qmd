@@ -1,7 +1,0 @@
----
-title: "Statistical Models"
----
-
-Model families I'm building working knowledge of for HEOR/RWE. Each entry follows the same structure: the model, the assumptions, when to use it, R code, diagnostics, and what tripped me up.
-
-*Planned: Poisson regression, negative binomial, zero-inflated Poisson, **ZINB** (the anchor project model), hurdle models, GLMs for cost (gamma, log-link), Cox PH refresher in R, mixed models with `lme4`.*

@@ -1,22 +1,45 @@
-/* Tighten the homepage two-column grid */
-.grid > .g-col-6 {
-  padding: 1.25rem;
+/* Clean, minimal styling */
+
+/* Lead paragraph */
+.lead {
+  font-size: 1.1rem;
+  color: #4a5568;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+/* Grid cards */
+.grid .g-col-12 {
+  padding: 1.25rem 1.5rem;
   border: 1px solid #e2e8f0;
   border-radius: 8px;
   background: #fafbfc;
-  transition: border-color 0.15s ease, transform 0.15s ease;
 }
 
-.grid > .g-col-6:hover {
-  border-color: #2c5282;
-  transform: translateY(-1px);
+.grid .g-col-12:hover {
+  border-color: #2b6cb0;
+  background: #fff;
 }
 
-.grid > .g-col-6 h3 {
-  margin-top: 0;
+/* Navbar clean */
+.navbar {
+  border-bottom: 1px solid #e2e8f0;
 }
 
-/* Slightly less aggressive code block padding */
+/* Footer */
+.nav-footer {
+  border-top: 1px solid #e2e8f0;
+  font-size: 0.875rem;
+  color: #718096;
+}
+
+/* Post listing */
+.quarto-listing .list-item {
+  padding: 1rem 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+/* Code blocks */
 pre.sourceCode {
-  padding: 0.75rem 1rem;
+  border-radius: 6px;
 }

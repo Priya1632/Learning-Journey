@@ -1,9 +1,51 @@
+project:
+  type: website
+
 website:
-  title: "Learning Journey"
-  sidebar:
-    - title: "SAS to R"
-      contents: auto
-      dir: sas-to-r
-    - title: "HEOR & RWE"
-      contents: auto
-      dir: heor-rwe
+  title: "ShivaPriya Bodduluri"
+  description: "A biostatistician's learning journal — SAS to R, and into HEOR/RWE."
+  site-url: https://Priya1632.github.io/Learning-Journey/
+  repo-url: https://github.com/Priya1632/Learning-Journey
+  repo-actions: [edit, source]
+  page-navigation: true
+  back-to-top-navigation: true
+
+  navbar:
+    background: light
+    foreground: dark
+    search: true
+    left:
+      - href: index.qmd
+        text: Home
+      - href: posts.qmd
+        text: All Posts
+      - href: about.qmd
+        text: About
+    right:
+      - icon: github
+        href: https://github.com/Priya1632/Learning-Journey
+      - icon: linkedin
+        href: https://www.linkedin.com/in/priya-bodduluri/
+
+  page-footer:
+    center: "© 2026 Priya Bodduluri · A learning journal in progress"
+
+format:
+  html:
+    theme: flatly
+    css: assets/styles.css
+    toc: true
+    toc-depth: 3
+    toc-location: right
+    code-fold: false
+    code-copy: true
+    code-overflow: wrap
+    highlight-style: github
+    fig-align: center
+    smooth-scroll: true
+    link-external-newwindow: true
+
+execute:
+  freeze: auto
+  warning: false
+  message: false

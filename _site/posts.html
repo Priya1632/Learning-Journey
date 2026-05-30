@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>From SAS to R, and into HEOR/RWE – ShivaPriya Bodduluri</title>
+<title>All Posts – ShivaPriya Bodduluri</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -75,20 +75,20 @@ ul.task-list li input[type="checkbox"] {
 <script>
 
   window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-recent-posts .list');
+    const listingTargetEl = window.document.querySelector('#listing-listing .list');
     if (!listingTargetEl) {
       // No listing discovered, do not attach.
       return; 
     }
 
     const options = {
-      valueNames: ['listing-date','listing-title','listing-subtitle','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-date','listing-title','listing-subtitle','listing-categories','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: ["listing-date","listing-title","listing-author","listing-subtitle","listing-image","listing-description"],
+      searchColumns: ["listing-date","listing-title","listing-author","listing-subtitle","listing-image","listing-description","listing-categories"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-recent-posts'] = new List('listing-recent-posts', options);
+    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
 
     if (window['quarto-listing-loaded']) {
       window['quarto-listing-loaded']();
@@ -154,11 +154,11 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="./index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./posts.html"> 
+    <a class="nav-link active" href="./posts.html" aria-current="page"> 
 <span class="menu-text">All Posts</span></a>
   </li>  
   <li class="nav-item">
@@ -185,22 +185,22 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Y2FyZWVyLXRyYW5zaXRpb24=">career-transition <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Y29uZmVyZW5jZXM=">conferences <span class="quarto-category-count">(1)</span></div><div class="category" data-category="SEVPUg==">HEOR <span class="quarto-category-count">(1)</span></div><div class="category" data-category="SVNQT1I=">ISPOR <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bmV0d29ya2luZw==">networking <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
-<main class="content column-page" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">From SAS to R, and into HEOR/RWE</h1>
-<p class="subtitle lead">A biostatistician’s applied learning journal</p>
+<h1 class="title">All Posts</h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-page">
+<div class="quarto-title-meta">
 
     
   
@@ -212,27 +212,11 @@ window.Quarto = {
 </header>
 
 
-<div class="lead">
-<p>Hi! I’m a clinical biostatistician (PharmD, MPH) documenting my applied technical transition from clinical SAS programming into R fluency, Real-World Evidence (RWE), and Health Economics and Outcomes Research (HEOR) methodologies. This space is my knowledge vault!</p>
-</div>
-<hr>
-<section id="what-i-write-about" class="level2">
-<h2 class="anchored" data-anchor-id="what-i-write-about">What I write about</h2>
-<div class="grid">
-<section id="sas-r" class="level4 g-col-12 g-col-md-6">
-<h4 class="anchored" data-anchor-id="sas-r">📘 SAS → R</h4>
-<p>R fundamentals, tidyverse, pharmaverse, and side-by-side translations of SAS patterns I use every day.</p>
-</section>
-<section id="heor-rwe" class="level4 g-col-12 g-col-md-6">
-<h4 class="anchored" data-anchor-id="heor-rwe">🔬 HEOR &amp; RWE</h4>
-<p>Causal inference, statistical models, study design, data sources, and tools used in real-world evidence.</p>
-</section>
-</div>
-<hr>
-</section>
-<section id="recent-posts" class="level2">
-<h2 class="anchored" data-anchor-id="recent-posts">Recent posts</h2>
-<div id="listing-recent-posts" class="quarto-listing quarto-listing-container-default">
+
+
+
+
+<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
 <div class="list quarto-listing-default">
 <div class="quarto-post image-right" data-index="0" data-categories="SVNQT1IlMkNjb25mZXJlbmNlcyUyQ0hFT1IlMkNuZXR3b3JraW5nJTJDY2FyZWVyLXRyYW5zaXRpb24=" data-listing-date-sort="1779685200000" data-listing-file-modified-sort="1780109661000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="515">
 <div class="body">
@@ -255,6 +239,9 @@ window.Quarto = {
 <div class="listing-category" onclick="window.quartoListingCategory('Y2FyZWVyLXRyYW5zaXRpb24='); return false;">career-transition</div>
 
 </div>
+<div class="delink listing-description"><a href="./posts/ispor-2026/index.html" class="no-external">
+<p>I attended my first ISPOR in Philadelphia. Here’s what I learned, what surprised me, and what I’d tell anyone going for the first time.</p>
+</a></div>
 </div>
 <div class="metadata">
 <a href="./posts/ispor-2026/index.html" class="no-external">
@@ -266,14 +253,7 @@ May 25, 2026
 </div>
 </div>
 <div class="listing-no-matching d-none">No matching items</div>
-</div>
-<p><a href="./posts.html">View all posts →</a></p>
-
-
-
-</section>
-
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+</div><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -687,7 +667,7 @@ May 25, 2026
     </div>   
     <div class="nav-footer-center">
 <p>© 2026 Priya Bodduluri · A learning journal in progress</p>
-<div class="toc-actions"><ul><li><a href="https://github.com/Priya1632/Learning-Journey/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/Priya1632/Learning-Journey/blob/main/index.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div>
+<div class="toc-actions"><ul><li><a href="https://github.com/Priya1632/Learning-Journey/edit/main/posts.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/Priya1632/Learning-Journey/blob/main/posts.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

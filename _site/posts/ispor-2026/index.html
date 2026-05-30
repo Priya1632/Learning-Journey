@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2026-05-25">
+<meta name="description" content="I attended my first ISPOR in Philadelphia. Here’s what I learned, what surprised me, and what I’d tell anyone going for the first time.">
 
-<title>R Fundamentals – From SAS to R, and into HEOR/RWE</title>
+<title>My First ISPOR: What Nobody Tells You Before You Go – ShivaPriya Bodduluri</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -33,22 +35,16 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../sas-to-r/dplyr-tidyverse/index.html" rel="next">
-<link href="../../sas-to-r/index.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-92b4efa5a00fd0636b70fb36335b7b6c.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-08a587f1b25f2b58eba723b444250cc8.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-92b4efa5a00fd0636b70fb36335b7b6c.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-de63f62b328812d8e578a4d74e282472.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-847d0801d052392e246acc156acdd757.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-982ba22e7aae70396ce6f260588cd927.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-847d0801d052392e246acc156acdd757.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-61fcfb564202351f62555a117430d0da.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -82,169 +78,7 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="../../assets/styles.css">
 </head>
 
-<body class="nav-sidebar docked nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
-    const toggleBodyColorMode = (bsSheetEl) => {
-      const mode = bsSheetEl.getAttribute("data-mode");
-      const bodyEl = window.document.querySelector("body");
-      if (mode === "dark") {
-        bodyEl.classList.add("quarto-dark");
-        bodyEl.classList.remove("quarto-light");
-      } else {
-        bodyEl.classList.add("quarto-light");
-        bodyEl.classList.remove("quarto-dark");
-      }
-    }
-    const toggleBodyColorPrimary = () => {
-      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
-      if (bsSheetEl) {
-        toggleBodyColorMode(bsSheetEl);
-      }
-    }
-    const setColorSchemeToggle = (alternate) => {
-      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-      for (let i=0; i < toggles.length; i++) {
-        const toggle = toggles[i];
-        if (toggle) {
-          if (alternate) {
-            toggle.classList.add("alternate");
-          } else {
-            toggle.classList.remove("alternate");
-          }
-        }
-      }
-    };
-    const toggleColorMode = (alternate) => {
-      // Switch the stylesheets
-      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
-      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-      manageTransitions('#quarto-margin-sidebar .nav-link', false);
-      if (alternate) {
-        // note: dark is layered on light, we don't disable primary!
-        enableStylesheet(alternateStylesheets);
-        for (const sheetNode of alternateStylesheets) {
-          if (sheetNode.id === "quarto-bootstrap") {
-            toggleBodyColorMode(sheetNode);
-          }
-        }
-      } else {
-        disableStylesheet(alternateStylesheets);
-        enableStylesheet(primaryStylesheets)
-        toggleBodyColorPrimary();
-      }
-      manageTransitions('#quarto-margin-sidebar .nav-link', true);
-      // Switch the toggles
-      setColorSchemeToggle(alternate)
-      // Hack to workaround the fact that safari doesn't
-      // properly recolor the scrollbar when toggling (#1455)
-      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-        manageTransitions("body", false);
-        window.scrollTo(0, 1);
-        setTimeout(() => {
-          window.scrollTo(0, 0);
-          manageTransitions("body", true);
-        }, 40);
-      }
-    }
-    const disableStylesheet = (stylesheets) => {
-      for (let i=0; i < stylesheets.length; i++) {
-        const stylesheet = stylesheets[i];
-        stylesheet.rel = 'disabled-stylesheet';
-      }
-    }
-    const enableStylesheet = (stylesheets) => {
-      for (let i=0; i < stylesheets.length; i++) {
-        const stylesheet = stylesheets[i];
-        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
-          stylesheet.rel = 'stylesheet';
-        }
-      }
-    }
-    const manageTransitions = (selector, allowTransitions) => {
-      const els = window.document.querySelectorAll(selector);
-      for (let i=0; i < els.length; i++) {
-        const el = els[i];
-        if (allowTransitions) {
-          el.classList.remove('notransition');
-        } else {
-          el.classList.add('notransition');
-        }
-      }
-    }
-    const isFileUrl = () => {
-      return window.location.protocol === 'file:';
-    }
-    const hasAlternateSentinel = () => {
-      let styleSentinel = getColorSchemeSentinel();
-      if (styleSentinel !== null) {
-        return styleSentinel === "alternate";
-      } else {
-        return false;
-      }
-    }
-    const setStyleSentinel = (alternate) => {
-      const value = alternate ? "alternate" : "default";
-      if (!isFileUrl()) {
-        window.localStorage.setItem("quarto-color-scheme", value);
-      } else {
-        localAlternateSentinel = value;
-      }
-    }
-    const getColorSchemeSentinel = () => {
-      if (!isFileUrl()) {
-        const storageValue = window.localStorage.getItem("quarto-color-scheme");
-        return storageValue != null ? storageValue : localAlternateSentinel;
-      } else {
-        return localAlternateSentinel;
-      }
-    }
-    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-      let newTheme = '';
-      if(authorPrefersDark) {
-        newTheme = isAlternate ? baseTheme : alternateTheme;
-      } else {
-        newTheme = isAlternate ? alternateTheme : baseTheme;
-      }
-      const changeGiscusTheme = () => {
-        // From: https://github.com/giscus/giscus/issues/336
-        const sendMessage = (message) => {
-          const iframe = document.querySelector('iframe.giscus-frame');
-          if (!iframe) return;
-          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-        }
-        sendMessage({
-          setConfig: {
-            theme: newTheme
-          }
-        });
-      }
-      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-      if (isGiscussLoaded) {
-        changeGiscusTheme();
-      }
-    };
-    const authorPrefersDark = false;
-    const darkModeDefault = authorPrefersDark;
-      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
-      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
-    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-    // Dark / light mode switch
-    window.quartoToggleColorScheme = () => {
-      // Read the current dark / light value
-      let toAlternate = !hasAlternateSentinel();
-      toggleColorMode(toAlternate);
-      setStyleSentinel(toAlternate);
-      toggleGiscusIfUsed(toAlternate, darkModeDefault);
-      window.dispatchEvent(new Event('resize'));
-    };
-    // Switch to dark mode if need be
-    if (hasAlternateSentinel()) {
-      toggleColorMode(true);
-    } else {
-      toggleColorMode(false);
-    }
-  </script>
+<body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -252,7 +86,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
-    <span class="navbar-title">From SAS to R, and into HEOR/RWE</span>
+    <span class="navbar-title">ShivaPriya Bodduluri</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -265,199 +99,83 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-sas-→-r" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">SAS → R</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-sas-→-r">    
-        <li>
-    <a class="dropdown-item" href="../../sas-to-r/index.html">
- <span class="dropdown-text">SAS → R</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../../sas-to-r/r-fundamentals/index.html">
- <span class="dropdown-text">R Fundamentals</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../../sas-to-r/dplyr-tidyverse/index.html">
- <span class="dropdown-text">dplyr &amp; tidyverse</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../../sas-to-r/pharmaverse/index.html">
- <span class="dropdown-text">pharmaverse</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../../sas-to-r/sas-vs-r-patterns/index.html">
- <span class="dropdown-text">SAS vs R Patterns</span></a>
-  </li>  
-    </ul>
-  </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-heor--rwe" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">HEOR &amp; RWE</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-heor--rwe">    
-        <li>
-    <a class="dropdown-item" href="../../heor-rwe/index.html">
- <span class="dropdown-text">HEOR &amp; RWE</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../../heor-rwe/stat-models/index.html">
- <span class="dropdown-text">Statistical Models</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../../heor-rwe/methods-concepts/index.html">
- <span class="dropdown-text">Methods &amp; Concepts</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../../heor-rwe/tools/index.html">
- <span class="dropdown-text">Tools &amp; Software</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../../heor-rwe/resources-reviewed/index.html">
- <span class="dropdown-text">Resources Reviewed</span></a>
-  </li>  
-    </ul>
-  </li>
   <li class="nav-item">
-    <a class="nav-link" href="../../reference/r-cheatsheet.html"> 
-<span class="menu-text">R Reference</span></a>
+    <a class="nav-link" href="../../posts.html"> 
+<span class="menu-text">All Posts</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/Priya1632/Learning-Journey"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/priya-bodduluri/"> <i class="bi bi-linkedin" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
-      </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../sas-to-r/r-fundamentals/index.html">R Fundamentals</a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
-    </div>
-  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
-    <div class="sidebar-menu-container"> 
-    <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../sas-to-r/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">SAS → R</span></a>
-  </div>
-</li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../../sas-to-r/r-fundamentals/index.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">R Fundamentals</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../sas-to-r/r-fundamentals/index.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">R Fundamentals</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../../sas-to-r/dplyr-tidyverse/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">dplyr &amp; tidyverse</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../../sas-to-r/dplyr-tidyverse/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">dplyr &amp; tidyverse</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../sas-to-r/dplyr-tidyverse/week2-core-verbs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 2 — Core dplyr verbs</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../../sas-to-r/pharmaverse/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">pharmaverse</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../sas-to-r/pharmaverse/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">pharmaverse</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../../sas-to-r/sas-vs-r-patterns/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">SAS vs R patterns</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../sas-to-r/sas-vs-r-patterns/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">SAS vs R Patterns</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-    </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#go-in-with-a-clear-goal" id="toc-go-in-with-a-clear-goal" class="nav-link active" data-scroll-target="#go-in-with-a-clear-goal">Go in with a clear goal</a></li>
+  <li><a href="#network-intentionally-not-aggressively" id="toc-network-intentionally-not-aggressively" class="nav-link" data-scroll-target="#network-intentionally-not-aggressively">Network intentionally, not aggressively</a></li>
+  <li><a href="#plan-before-you-arrive" id="toc-plan-before-you-arrive" class="nav-link" data-scroll-target="#plan-before-you-arrive">Plan before you arrive</a></li>
+  <li><a href="#use-your-in-person-time-wisely" id="toc-use-your-in-person-time-wisely" class="nav-link" data-scroll-target="#use-your-in-person-time-wisely">Use your in-person time wisely</a></li>
+  <li><a href="#practical-things-that-actually-matter" id="toc-practical-things-that-actually-matter" class="nav-link" data-scroll-target="#practical-things-that-actually-matter">Practical things that actually matter</a></li>
+  <li><a href="#what-im-taking-back" id="toc-what-im-taking-back" class="nav-link" data-scroll-target="#what-im-taking-back">What I’m taking back</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/Priya1632/Learning-Journey/edit/main/posts/ispor-2026/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/Priya1632/Learning-Journey/blob/main/posts/ispor-2026/index.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">R Fundamentals</h1>
-</div>
+<h1 class="title">My First ISPOR: What Nobody Tells You Before You Go</h1>
+<p class="subtitle lead">Honest field notes from ISPOR 2026 — tips, sessions, and what I’d do differently</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">ISPOR</div>
+    <div class="quarto-category">conferences</div>
+    <div class="quarto-category">HEOR</div>
+    <div class="quarto-category">networking</div>
+    <div class="quarto-category">career-transition</div>
+  </div>
+  </div>
 
+<div>
+  <div class="description">
+    I attended my first ISPOR in Philadelphia. Here’s what I learned, what surprised me, and what I’d tell anyone going for the first time.
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 25, 2026</p>
+    </div>
+  </div>
   
     
   </div>
@@ -467,27 +185,80 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>The conceptual groundwork — the things that aren’t really about <em>doing</em> analysis but about understanding why R behaves the way it does. Entries here will cover data types, vectors vs.&nbsp;lists, factors, environments, NSE, and the SAS-programmer’s “wait, what?” moments.</p>
-<p><em>Entries will be added here as I work through them. Check back, or follow the repo.</em></p>
+<p>I attended my first ISPOR 2026 conference in Philadelphia. I enrolled in two short courses and attended one main conference day. It was a lot, in the best way. Here’s what I took away and what I’d tell anyone heading there next time.</p>
+<hr>
+<section id="go-in-with-a-clear-goal" class="level2">
+<h2 class="anchored" data-anchor-id="go-in-with-a-clear-goal">Go in with a clear goal</h2>
+<p>ISPOR is massive. Without a goal, it’s easy to wander. Before you go, identify the area you want to grow in — real-world evidence, comparative effectiveness, causal inference, whatever it is. That focus shapes everything: which sessions you attend, which booths you visit, which conversations you seek out.</p>
+<p>For me, I’m actively building toward HEOR and RWE, so I chose my short courses around that:</p>
+<ul>
+<li><strong>Causal Inference and Causal Diagrams in Big, Real-World Observational Data and Pragmatic Trials</strong></li>
+<li><strong>Developing Decision-Grade Real-World Evidence</strong></li>
+</ul>
+<p>Both aligned directly with where I want to grow. Being in a room full of people working on the same problems made it immediately clear who I wanted to talk to. Your goal doesn’t have to be complicated — just intentional.</p>
+<hr>
+</section>
+<section id="network-intentionally-not-aggressively" class="level2">
+<h2 class="anchored" data-anchor-id="network-intentionally-not-aggressively">Network intentionally, not aggressively</h2>
+<p>Set a realistic target — 3 to 5 genuine conversations. Not just LinkedIn connections. Conversations.</p>
+<p><strong>Poster sessions are underrated for this.</strong> Find research that interests you, walk up, ask the presenter about their work. People love talking about their research. Connect on LinkedIn while you’re still standing there.</p>
+<p>If you’re interested in a specific company, visit their booth — ideally in the morning before it gets crowded. Ask for methodology folks if you want to understand their approach. Ask for HR if you’re exploring opportunities. Be direct, be friendly.</p>
+<hr>
+</section>
+<section id="plan-before-you-arrive" class="level2">
+<h2 class="anchored" data-anchor-id="plan-before-you-arrive">Plan before you arrive</h2>
+<p>Download the ISPOR app — it’s genuinely useful. Before the conference:</p>
+<ul>
+<li>Finalize your short courses and plenary sessions</li>
+<li>Browse the attendee list and flag interesting profiles</li>
+<li>Review the exhibitor list and make a priority list of booths to visit</li>
+</ul>
+<p>Keep only your planned sessions in the app so you’re not distracted scrolling through everything else.</p>
+<hr>
+</section>
+<section id="use-your-in-person-time-wisely" class="level2">
+<h2 class="anchored" data-anchor-id="use-your-in-person-time-wisely">Use your in-person time wisely</h2>
+<p>Most sessions are recorded. Your competitive advantage at the conference is being <em>there</em> — hands-on workshops, live debates, poster conversations, hallway chats. Prioritize the things that don’t translate to a recording.</p>
+<hr>
+</section>
+<section id="practical-things-that-actually-matter" class="level2">
+<h2 class="anchored" data-anchor-id="practical-things-that-actually-matter">Practical things that actually matter</h2>
+<ul>
+<li><strong>Wear comfortable shoes.</strong> Seriously. The walking is brutal.</li>
+<li><strong>Bring protein bars and water.</strong> You’ll thank yourself.</li>
+<li><strong>Don’t overdo it.</strong> One focused day beats three burned-out ones.</li>
+<li><strong>Talk to people.</strong> Everyone is approachable. You never know where a conversation leads.</li>
+<li><strong>Write notes immediately.</strong> By evening of day two you’ll barely remember day one.</li>
+</ul>
+<hr>
+</section>
+<section id="what-im-taking-back" class="level2">
+<h2 class="anchored" data-anchor-id="what-im-taking-back">What I’m taking back</h2>
+<ul>
+<li>The field is smaller than it looks. The same names appear on posters, in session chairs, in the hallways. Worth knowing who the key practitioners are early.</li>
+<li>Methods I’m studying in isolation feel more grounded now — I can picture the context they’re used in.</li>
+<li>ISPOR is not a methods conference. If you go expecting deep statistical methodology talks, you’ll be frustrated. What’s debated is <em>which</em> methods, <em>when</em>, and <em>what the results mean for decision-making</em>. That’s a different mode of thinking.</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>If you’re transitioning from clinical trials into HEOR/RWE:</strong> Go to ISPOR before you feel ready. The exposure to the full evidence-to-decision pipeline is worth more than you expect.</p>
+</div>
+</div>
 
 
+</section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
-    // Ensure there is a toggle, if there isn't float one in the top right
-    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-      const a = window.document.createElement('a');
-      a.classList.add('top-right');
-      a.classList.add('quarto-color-scheme-toggle');
-      a.href = "";
-      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-      const i = window.document.createElement("i");
-      i.classList.add('bi');
-      a.appendChild(i);
-      window.document.body.appendChild(a);
-    }
-    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {
@@ -573,6 +344,11 @@ ul.task-list li input[type="checkbox"] {
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
         }
       }
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
@@ -886,42 +662,17 @@ ul.task-list li input[type="checkbox"] {
     }
   });
   </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="../../sas-to-r/index.html" class="pagination-link" aria-label="SAS → R">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">SAS → R</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="../../sas-to-r/dplyr-tidyverse/index.html" class="pagination-link" aria-label="dplyr &amp; tidyverse">
-        <span class="nav-page-text">dplyr &amp; tidyverse</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>© 2026 · A learning journal in progress.</p>
-</div>   
-    <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/Priya1632/Learning-Journey/edit/main/sas-to-r/r-fundamentals/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/Priya1632/Learning-Journey/blob/main/sas-to-r/r-fundamentals/index.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div>
+    </div>   
+    <div class="nav-footer-center">
+<p>© 2026 Priya Bodduluri · A learning journal in progress</p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Priya1632/Learning-Journey/edit/main/posts/ispor-2026/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/Priya1632/Learning-Journey/blob/main/posts/ispor-2026/index.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div>
     <div class="nav-footer-right">
-      <ul class="footer-items list-unstyled">
-    <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/Priya1632/Learning-Journey">
-      <i class="bi bi-github" role="img">
-</i> 
-    </a>
-  </li>  
-    <li class="nav-item compact">
-    <a class="nav-link" href="https://www.linkedin.com/in/priya-bodduluri/">
-      <i class="bi bi-linkedin" role="img">
-</i> 
-    </a>
-  </li>  
-</ul>
+      &nbsp;
     </div>
   </div>
 </footer>

@@ -1,0 +1,72 @@
+---
+title: "My First ISPOR: What Nobody Tells You Before You Go"
+subtitle: "Honest field notes from ISPOR 2026 — tips, sessions, and what I'd do differently"
+date: 2026-05-25
+categories: [ISPOR, conferences, HEOR, networking, career-transition]
+description: "I attended my first ISPOR in Philadelphia. Here's what I learned, what surprised me, and what I'd tell anyone going for the first time."
+---
+
+I attended my first ISPOR 2026 conference in Philadelphia. I enrolled in two short courses and attended one main conference day. It was a lot, in the best way. Here's what I took away and what I'd tell anyone heading there next time.
+
+---
+
+## Go in with a clear goal
+
+ISPOR is massive. Without a goal, it's easy to wander. Before you go, identify the area you want to grow in — real-world evidence, comparative effectiveness, causal inference, whatever it is. That focus shapes everything: which sessions you attend, which booths you visit, which conversations you seek out.
+
+For me, I'm actively building toward HEOR and RWE, so I chose my short courses around that:
+
+- **Causal Inference and Causal Diagrams in Big, Real-World Observational Data and Pragmatic Trials**
+- **Developing Decision-Grade Real-World Evidence**
+
+Both aligned directly with where I want to grow. Being in a room full of people working on the same problems made it immediately clear who I wanted to talk to. Your goal doesn't have to be complicated — just intentional.
+
+---
+
+## Network intentionally, not aggressively
+
+Set a realistic target — 3 to 5 genuine conversations. Not just LinkedIn connections. Conversations.
+
+**Poster sessions are underrated for this.** Find research that interests you, walk up, ask the presenter about their work. People love talking about their research. Connect on LinkedIn while you're still standing there.
+
+If you're interested in a specific company, visit their booth — ideally in the morning before it gets crowded. Ask for methodology folks if you want to understand their approach. Ask for HR if you're exploring opportunities. Be direct, be friendly.
+
+---
+
+## Plan before you arrive
+
+Download the ISPOR app — it's genuinely useful. Before the conference:
+
+- Finalize your short courses and plenary sessions
+- Browse the attendee list and flag interesting profiles
+- Review the exhibitor list and make a priority list of booths to visit
+
+Keep only your planned sessions in the app so you're not distracted scrolling through everything else.
+
+---
+
+## Use your in-person time wisely
+
+Most sessions are recorded. Your competitive advantage at the conference is being *there* — hands-on workshops, live debates, poster conversations, hallway chats. Prioritize the things that don't translate to a recording.
+
+---
+
+## Practical things that actually matter
+
+- **Wear comfortable shoes.** Seriously. The walking is brutal.
+- **Bring protein bars and water.** You'll thank yourself.
+- **Don't overdo it.** One focused day beats three burned-out ones.
+- **Talk to people.** Everyone is approachable. You never know where a conversation leads.
+- **Write notes immediately.** By evening of day two you'll barely remember day one.
+
+---
+
+## What I'm taking back
+
+- The field is smaller than it looks. The same names appear on posters, in session chairs, in the hallways. Worth knowing who the key practitioners are early.
+- Methods I'm studying in isolation feel more grounded now — I can picture the context they're used in.
+- ISPOR is not a methods conference. If you go expecting deep statistical methodology talks, you'll be frustrated. What's debated is *which* methods, *when*, and *what the results mean for decision-making*. That's a different mode of thinking.
+
+::: {.callout-tip}
+**If you're transitioning from clinical trials into HEOR/RWE:** Go to ISPOR before you feel ready. The exposure to the full evidence-to-decision pipeline is worth more than you expect.
+:::
